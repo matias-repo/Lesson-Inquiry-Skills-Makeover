@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>IB EE Examiner Training Suite v4.3 · Compact</title>
+  <title>IB EE Examiner Training Suite v4.4 · Compact</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -51,56 +51,62 @@
 
     .stats-bar {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 10px 14px;
+      flex-wrap: nowrap;
+      gap: 6px;
+      padding: 8px 12px;
       background: #0f3460;
       border-bottom: 1px solid #1a1a4e;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
+      overflow-x: auto;
     }
 
     .stat-item {
       background: #16213e;
-      padding: 8px 14px;
+      padding: 6px 10px;
       border-radius: 6px;
       border: 1px solid #1a1a4e;
       text-align: center;
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 600;
+      white-space: nowrap;
+      flex: 1 1 auto;
+      min-width: 55px;
     }
 
     .stat-value {
-      font-size: 22px;
+      font-size: 18px;
       color: #e94560;
       font-weight: 800;
-      margin-top: 2px;
+      margin-top: 1px;
     }
 
     .mode-nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
-      padding: 10px;
+      gap: 4px;
+      padding: 8px 10px;
       background: #0a0a1a;
       border-bottom: 1px solid #1a1a4e;
       justify-content: center;
     }
 
     .mode-btn {
-      padding: 8px 14px;
+      padding: 6px 10px;
       background: #16213e;
       border: 1px solid #1a1a4e;
       color: #c0c0c0;
       cursor: pointer;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      border-radius: 6px;
+      border-radius: 5px;
       transition: all 0.2s;
       display: flex;
       flex-direction: column;
       align-items: center;
+      line-height: 1.2;
     }
 
     .mode-btn:hover {
@@ -113,28 +119,28 @@
       background: #e94560;
       color: white;
       border-color: #c23152;
-      box-shadow: 0 0 15px rgba(233,69,96,0.4);
+      box-shadow: 0 0 12px rgba(233,69,96,0.4);
     }
 
     .mode-btn .mode-timer {
-      font-size: 10px;
+      font-size: 9px;
       color: #ffaa00;
-      margin-top: 3px;
+      margin-top: 2px;
       font-weight: 400;
     }
 
     .content-area {
-      padding: 16px;
+      padding: 14px;
       background: #0d1b2e;
-      min-height: 420px;
+      min-height: 380px;
     }
 
     .progress-bar {
-      height: 7px;
+      height: 6px;
       background: #0a0a1a;
-      border-radius: 4px;
+      border-radius: 3px;
       overflow: hidden;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .progress-fill {
@@ -147,17 +153,17 @@
       background: #1a1a2e;
       border: 1px solid #0f3460;
       border-radius: 10px;
-      padding: 18px;
-      margin-bottom: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
 
     .question-header {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 800;
       color: #e94560;
-      margin-bottom: 12px;
-      padding-bottom: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
       border-bottom: 2px solid #0f3460;
     }
 
@@ -165,25 +171,24 @@
       background: #0a0a1a;
       border: 2px solid #1a1a4e;
       border-radius: 8px;
-      padding: 14px;
-      margin: 8px 0;
+      padding: 12px;
+      margin: 6px 0;
       cursor: pointer;
       transition: all 0.2s;
-      font-size: 13px;
-      line-height: 1.6;
+      font-size: 12px;
+      line-height: 1.5;
       color: #e0e0e0;
     }
 
     .essay-box:hover {
       border-color: #e94560;
       background: #12122a;
-      transform: scale(1.01);
     }
 
     .essay-box.selected {
       border-color: #e94560;
       background: #1a0a1a;
-      box-shadow: 0 0 15px rgba(233,69,96,0.3);
+      box-shadow: 0 0 12px rgba(233,69,96,0.3);
     }
 
     .essay-box.correct {
@@ -199,31 +204,31 @@
     .essay-label {
       font-weight: 800;
       color: #e94560;
-      font-size: 15px;
-      margin-bottom: 6px;
+      font-size: 14px;
+      margin-bottom: 4px;
     }
 
     .essay-section {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .essay-section h4 {
       color: #ff6b6b;
-      font-size: 13px;
+      font-size: 12px;
       margin-bottom: 2px;
     }
 
     .essay-section p {
-      margin-left: 8px;
+      margin-left: 6px;
       color: #c0c0c0;
-      font-size: 12px;
+      font-size: 11px;
     }
 
     .btn {
-      padding: 8px 16px;
+      padding: 7px 14px;
       border: none;
-      border-radius: 6px;
-      font-size: 12px;
+      border-radius: 5px;
+      font-size: 11px;
       font-weight: 700;
       cursor: pointer;
       text-transform: uppercase;
@@ -252,16 +257,16 @@
     .btn-group {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
+      gap: 8px;
+      margin-top: 12px;
     }
 
     .feedback-panel {
       background: #1a1a2e;
       border: 1px solid #0f3460;
       border-radius: 8px;
-      padding: 16px;
-      margin-top: 14px;
+      padding: 14px;
+      margin-top: 12px;
       display: none;
       animation: fadeIn 0.3s;
     }
@@ -270,24 +275,24 @@
       display: block;
     }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
     .error-item {
       background: #0a0a1a;
       border-left: 4px solid #e94560;
-      padding: 10px;
-      margin: 6px 0;
+      padding: 8px;
+      margin: 4px 0;
       border-radius: 4px;
-      font-size: 12px;
+      font-size: 11px;
     }
 
     .grade-badge {
       display: inline-block;
-      padding: 2px 8px;
-      border-radius: 10px;
-      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-size: 9px;
       font-weight: 800;
-      margin-right: 6px;
+      margin-right: 4px;
     }
 
     .grade-a { background: #00cc66; color: white; }
@@ -299,11 +304,11 @@
       background: #0a0a1a;
       border: 2px solid #1a1a4e;
       border-radius: 6px;
-      padding: 12px;
-      margin: 6px 0;
+      padding: 10px;
+      margin: 5px 0;
       cursor: pointer;
-      font-size: 13px;
-      line-height: 1.5;
+      font-size: 12px;
+      line-height: 1.4;
       transition: all 0.2s;
     }
 
@@ -320,18 +325,19 @@
     .matching-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 10px;
     }
 
     .match-item {
       background: #0a0a1a;
       border: 2px solid #1a1a4e;
       border-radius: 6px;
-      padding: 10px;
-      margin: 6px 0;
+      padding: 8px;
+      margin: 4px 0;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 11px;
       transition: all 0.2s;
+      word-break: break-word;
     }
 
     .match-item.selected {
@@ -347,9 +353,9 @@
     .leaderboard {
       background: #0f1629;
       border: 2px solid #e94560;
-      border-radius: 12px;
-      padding: 20px;
-      margin: 16px 0;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 14px 0;
       text-align: center;
       animation: fadeIn 0.5s;
     }
@@ -357,62 +363,62 @@
     .leaderboard h2 {
       color: #e94560;
       margin-bottom: 4px;
-      font-size: 22px;
+      font-size: 20px;
     }
 
     .leaderboard .subtitle {
       color: #a0a0a0;
-      margin-bottom: 14px;
-      font-size: 13px;
+      margin-bottom: 10px;
+      font-size: 12px;
     }
 
     .leaderboard-entry {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 12px;
+      padding: 6px 10px;
       background: #16213e;
-      margin: 5px 0;
-      border-radius: 8px;
+      margin: 4px 0;
+      border-radius: 6px;
       font-weight: 600;
-      font-size: 13px;
+      font-size: 12px;
       border: 1px solid #1a1a4e;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 4px;
     }
 
     .leaderboard-entry.highlight {
       border-color: #e94560;
       background: #1a1a3e;
-      box-shadow: 0 0 12px rgba(233,69,96,0.3);
+      box-shadow: 0 0 10px rgba(233,69,96,0.3);
     }
 
     .leaderboard-rank {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 800;
       color: #ffaa00;
-      width: 30px;
+      width: 25px;
     }
 
     .leaderboard-initials {
       background: #e94560;
       color: white;
-      padding: 4px 10px;
-      border-radius: 16px;
+      padding: 3px 8px;
+      border-radius: 14px;
       font-weight: 800;
       letter-spacing: 1px;
-      font-size: 12px;
+      font-size: 11px;
     }
 
     .leaderboard-score {
       color: #00cc66;
-      font-size: 16px;
+      font-size: 14px;
     }
 
     .input-group {
-      margin: 16px 0;
+      margin: 12px 0;
       display: flex;
-      gap: 8px;
+      gap: 6px;
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
@@ -422,10 +428,10 @@
       background: #0a0a1a;
       border: 2px solid #e94560;
       color: white;
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-size: 16px;
-      width: 90px;
+      padding: 6px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      width: 80px;
       text-align: center;
       text-transform: uppercase;
       font-weight: 700;
@@ -435,18 +441,18 @@
     .initials-input:focus {
       outline: none;
       border-color: #ff6b6b;
-      box-shadow: 0 0 10px rgba(233,69,96,0.4);
+      box-shadow: 0 0 8px rgba(233,69,96,0.4);
     }
 
     .clear-scores-btn {
       background: transparent;
       border: 1px solid #ff4444;
       color: #ff4444;
-      padding: 6px 12px;
-      border-radius: 5px;
+      padding: 5px 10px;
+      border-radius: 4px;
       cursor: pointer;
-      font-size: 11px;
-      margin-top: 12px;
+      font-size: 10px;
+      margin-top: 10px;
     }
 
     .clear-scores-btn:hover {
@@ -456,13 +462,13 @@
 
     @media (max-width: 600px) {
       .header h1 { font-size: 18px; }
-      .essay-box { font-size: 11px; padding: 10px; }
+      .essay-box { font-size: 11px; padding: 8px; }
       .matching-grid { grid-template-columns: 1fr; }
-      .mode-btn { padding: 6px 10px; font-size: 10px; }
-      .stats-bar { gap: 4px; }
-      .stat-item { padding: 6px 10px; }
-      .stat-value { font-size: 18px; }
-      .btn { padding: 6px 12px; font-size: 11px; }
+      .mode-btn { padding: 5px 8px; font-size: 9px; }
+      .stats-bar { gap: 3px; }
+      .stat-item { padding: 4px 6px; }
+      .stat-value { font-size: 16px; }
+      .btn { padding: 6px 10px; font-size: 10px; }
     }
   </style>
 </head>
@@ -471,15 +477,15 @@
 <div class="main-container">
   <div class="header">
     <h1>IB EE Examiner Training Suite</h1>
-    <div class="subtitle">Professional Assessment Tool v4.3 · Compact</div>
+    <div class="subtitle">Professional Assessment Tool v4.4 · Streamlined</div>
   </div>
 
   <div class="stats-bar">
     <div class="stat-item"><div>SCORE</div><div class="stat-value" id="score-display">0</div></div>
     <div class="stat-item"><div>STREAK</div><div class="stat-value" id="streak-display">0</div></div>
-    <div class="stat-item"><div>ACCURACY</div><div class="stat-value" id="accuracy-display">0%</div></div>
-    <div class="stat-item"><div>QUESTIONS</div><div class="stat-value" id="question-display">0/25</div></div>
-    <div class="stat-item"><div>TIME</div><div class="stat-value" id="time-display">0:00</div></div>
+    <div class="stat-item"><div>ACC</div><div class="stat-value" id="accuracy-display">0%</div></div>
+    <div class="stat-item"><div>Q'S</div><div class="stat-value" id="question-display">0/25</div></div>
+    <div class="stat-item"><div>⏱️</div><div class="stat-value" id="time-display">0:00</div></div>
   </div>
 
   <div class="mode-nav" id="mode-nav">
@@ -492,11 +498,11 @@
   </div>
 
   <div class="content-area" id="content-area"></div>
-  <div id="leaderboard-container" style="padding: 0 16px 16px;"></div>
+  <div id="leaderboard-container" style="padding: 0 14px 14px;"></div>
 </div>
 
 <script>
-  // ============ GAME STATE v4.3 (Compact, No Level Counter) ============
+  // ============ GAME STATE v4.4 ============
   const state = {
     score: 0,
     questionsAnswered: 0,
@@ -521,16 +527,11 @@
     gameEnded: false
   };
 
-  // ============ LOCAL STORAGE FOR PERSISTENT LEADERBOARD ============
-  const STORAGE_KEY = 'ib_ee_trainer_leaderboard_v43';
+  // ============ LOCAL STORAGE ============
+  const STORAGE_KEY = 'ib_ee_trainer_leaderboard_v44';
 
   function loadPersistentLeaderboard() {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      return stored ? JSON.parse(stored) : [];
-    } catch (e) {
-      return [];
-    }
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch (e) { return []; }
   }
 
   function savePersistentLeaderboard(entries) {
@@ -538,90 +539,43 @@
       const sorted = entries.sort((a, b) => b.score - a.score).slice(0, 10);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(sorted));
       return sorted;
-    } catch (e) {
-      return entries;
-    }
+    } catch (e) { return entries; }
   }
 
-  // ============ EXPANDED ESSAY DATABASE ============
+  // ============ EXPANDED DATABASE ============
   const essayDB = [
-    {
-      id: 'eng1', subject: 'English A: Literature',
-      rq: 'To what extent does Virginia Woolf\'s use of free indirect discourse in Mrs Dalloway influence the reader\'s perception of time and consciousness?',
-      candidate: '004512-0032', session: 'May 2024',
-      intro: 'This extended essay examines the narrative technique of free indirect discourse in Virginia Woolf\'s modernist novel Mrs Dalloway (1925).',
-      analysis: 'Through close reading of key passages, this analysis demonstrates how Woolf\'s seamless movement between narration and internal thoughts creates "narrative time."',
-      conclusion: 'Woolf\'s innovative use of free indirect discourse is central to her modernist project, inviting readers to inhabit multiple temporal planes simultaneously.',
-      works: ['Woolf, Virginia. Mrs Dalloway. Hogarth Press, 1925.', 'Genette, Gérard. Narrative Discourse. Cornell UP, 1980.']
-    },
-    {
-      id: 'geo1', subject: 'Geography',
-      rq: 'To what extent have international climate agreements been effective in reducing carbon emissions since 1997?',
-      candidate: '007821-0045', session: 'November 2023',
-      intro: 'This geography extended essay evaluates the measurable impact of the Kyoto Protocol and the Paris Agreement on national carbon emission trajectories.',
-      analysis: 'Quantitative data reveals a 23% reduction in EU emissions between 1990-2020, while India\'s emissions increased by 14%.',
-      conclusion: 'International agreements\' effectiveness is contingent upon binding enforcement mechanisms and equitable burden-sharing.',
-      works: ['IPCC. Climate Change 2022. Cambridge UP, 2022.', 'United Nations. Paris Agreement. Treaty Series, 2015.']
-    },
-    {
-      id: 'phil1', subject: 'Philosophy',
-      rq: 'To what extent can Searle\'s Chinese Room argument refute strong artificial intelligence?',
-      candidate: '003409-0018', session: 'May 2025',
-      intro: 'This philosophy extended essay critically evaluates the logical force of Searle\'s Chinese Room thought experiment.',
-      analysis: 'Searle\'s distinction between syntax and semantics challenges functionalism, but Dennett\'s systems reply raises questions.',
-      conclusion: 'The Chinese Room highlights the difference between simulation and understanding but is not a decisive refutation.',
-      works: ['Searle, John. "Minds, Brains, and Programs." BBS, vol.3, 1980.', 'Dennett, Daniel. Consciousness Explained. Little Brown, 1991.']
-    },
-    {
-      id: 'hist1', subject: 'History',
-      rq: 'To what extent did the Treaty of Versailles contribute to the rise of extremism in Germany (1919-1933)?',
-      candidate: '009234-0056', session: 'November 2024',
-      intro: 'This history extended essay investigates the causal relationship between the Treaty of Versailles and the radicalization of German politics.',
-      analysis: 'War reparations and territorial losses created instability exploited by extremist parties, though other factors also contributed.',
-      conclusion: 'The Treaty was a significant but not exclusive factor; its psychological impact on national identity was crucial.',
-      works: ['Keynes, John M. The Economic Consequences of the Peace. Macmillan, 1919.', 'Evans, Richard. The Coming of the Third Reich. Penguin, 2004.']
-    },
-    {
-      id: 'bio1', subject: 'Biology',
-      rq: 'To what extent does microplastic concentration correlate with Daphnia magna population decline?',
-      candidate: '001256-0078', session: 'May 2026',
-      intro: 'This biology extended essay examines the ecotoxicological effects of microplastic pollution on a keystone freshwater species.',
-      analysis: 'Experimental data shows a significant negative correlation (r = -0.82) between microplastic concentration and filtration rates.',
-      conclusion: 'Microplastics pose a demonstrable threat to freshwater filter feeders, with implications for aquatic food webs.',
-      works: ['Rochman, C. "Microplastics in Freshwater." EnvSci, vol.45, 2019.', 'WHO. Microplastics in Drinking Water. WHO, 2022.']
-    }
+    { id: 'eng1', subject: 'English A: Literature', rq: 'To what extent does Virginia Woolf\'s use of free indirect discourse in Mrs Dalloway influence the reader\'s perception of time?', candidate: '004512-0032', session: 'May 2024', intro: 'Examines narrative technique in Woolf\'s modernist novel.', analysis: 'Close reading demonstrates how Woolf creates "narrative time."', conclusion: 'Woolf\'s innovation invites readers into multiple temporal planes.', works: ['Woolf, Virginia. Mrs Dalloway. Hogarth Press, 1925.', 'Genette, Gérard. Narrative Discourse. Cornell UP, 1980.'] },
+    { id: 'geo1', subject: 'Geography', rq: 'How effective have international climate agreements been since 1997?', candidate: '007821-0045', session: 'Nov 2023', intro: 'Evaluates Kyoto Protocol and Paris Agreement.', analysis: 'EU emissions dropped 23%, India\'s rose 14%.', conclusion: 'Effectiveness depends on binding mechanisms.', works: ['IPCC. Climate Change 2022. Cambridge UP, 2022.', 'UN. Paris Agreement. Treaty Series, 2015.'] },
+    { id: 'phil1', subject: 'Philosophy', rq: 'Can Searle\'s Chinese Room refute strong AI?', candidate: '003409-0018', session: 'May 2025', intro: 'Critically evaluates Searle\'s thought experiment.', analysis: 'Distinction between syntax and semantics challenges functionalism.', conclusion: 'Not a decisive refutation given neural network advances.', works: ['Searle, J. "Minds, Brains, Programs." BBS, 1980.', 'Dennett, D. Consciousness Explained. 1991.'] },
+    { id: 'hist1', subject: 'History', rq: 'Did the Treaty of Versailles cause extremism in Germany?', candidate: '009234-0056', session: 'Nov 2024', intro: 'Investigates causal relationship between treaty and radicalization.', analysis: 'Reparations created instability exploited by extremists.', conclusion: 'Significant but not exclusive factor.', works: ['Keynes, J.M. Economic Consequences. 1919.', 'Evans, R. Third Reich. 2004.'] }
   ];
 
-  // ============ ERROR DEFINITIONS ============
   const errorDB = {
-    rq_broad: { name: 'Overly Broad RQ', criterion: 'A', grade: 'D', explanation: 'Lacks specificity for a 4000-word investigation.', fix: 'Add specific context and analytical framing.' },
-    informal_lang: { name: 'Informal Register', criterion: 'B', grade: 'D', explanation: 'Uses colloquial language inappropriate for academic writing.', fix: 'Replace informal phrases with academic equivalents.' },
-    citation_format: { name: 'Inconsistent Citations', criterion: 'D', grade: 'C', explanation: 'Citations mix different styles.', fix: 'Choose one style and apply consistently.' },
-    descriptive_conclusion: { name: 'Descriptive Conclusion', criterion: 'C', grade: 'D', explanation: 'Conclusion summarizes rather than synthesizing.', fix: 'Directly address the research question analytically.' },
-    missing_pages: { name: 'Missing Page Numbers', criterion: 'D', grade: 'C', explanation: 'Direct quotations lack page numbers.', fix: 'Include page numbers for all quotations.' },
-    weak_topic: { name: 'Weak Topic Sentences', criterion: 'C', grade: 'D', explanation: 'Paragraphs begin with facts instead of claims.', fix: 'Start paragraphs with arguments, then evidence.' }
+    rq_broad: { name: 'Overly Broad RQ', criterion: 'A', grade: 'D', explanation: 'Lacks focus for 4000 words.', fix: 'Add specific context.' },
+    informal_lang: { name: 'Informal Register', criterion: 'B', grade: 'D', explanation: 'Colloquial language present.', fix: 'Use academic equivalents.' },
+    citation_format: { name: 'Inconsistent Citations', criterion: 'D', grade: 'C', explanation: 'Styles are mixed.', fix: 'Stick to one style.' },
+    descriptive_conclusion: { name: 'Descriptive Conclusion', criterion: 'C', grade: 'D', explanation: 'Summarizes instead of synthesizing.', fix: 'Answer RQ analytically.' },
+    missing_pages: { name: 'Missing Page Numbers', criterion: 'D', grade: 'C', explanation: 'Quotations lack pages.', fix: 'Include page numbers.' },
+    weak_topic: { name: 'Weak Topic Sentences', criterion: 'C', grade: 'D', explanation: 'Starts with facts not claims.', fix: 'Begin with arguments.' }
   };
 
-  // ============ BUILD PERFECT ESSAY HTML (COMPACT) ============
   function buildPerfectEssay(essay) {
-    return `
-      <div class="essay-label">${essay.subject} · ${essay.session}</div>
+    return `<div class="essay-label">${essay.subject} · ${essay.session}</div>
       <div class="essay-section"><b>RQ:</b> ${essay.rq}</div>
-      <div class="essay-section"><h4>Introduction</h4><p>${essay.intro}</p></div>
+      <div class="essay-section"><h4>Intro</h4><p>${essay.intro}</p></div>
       <div class="essay-section"><h4>Analysis</h4><p>${essay.analysis}</p></div>
       <div class="essay-section"><h4>Conclusion</h4><p>${essay.conclusion}</p></div>
-      <div class="essay-section"><h4>Works Cited</h4>${essay.works.map(w => `<p>${w}</p>`).join('')}</div>
-    `;
+      <div class="essay-section"><h4>Works Cited</h4>${essay.works.map(w => `<p>${w}</p>`).join('')}</div>`;
   }
 
-  function applyError(html, essay, errorKey) {
-    switch(errorKey) {
+  function applyError(html, essay, key) {
+    switch(key) {
       case 'rq_broad': return html.replace(essay.rq, 'How does literature affect people?');
-      case 'informal_lang': return html.replace('examines', 'looks at').replace('demonstrates', 'shows');
+      case 'informal_lang': return html.replace('Examines', 'Looks at').replace('demonstrates', 'shows');
       case 'citation_format': return html.replace('Hogarth Press, 1925.', 'Hogarth Press, 1925 (no italics).');
-      case 'descriptive_conclusion': return html.replace(essay.conclusion, 'In conclusion, this essay discussed many aspects. More research is needed.');
-      case 'missing_pages': return html.replace('BBS, vol.3, 1980.', 'BBS, vol.3, 1980.');
-      case 'weak_topic': return html.replace(essay.analysis.substring(0, 60), 'This topic is very interesting and has been studied by many people.');
+      case 'descriptive_conclusion': return html.replace(essay.conclusion, 'In conclusion, many aspects were discussed.');
+      case 'missing_pages': return html.replace('BBS, 1980.', 'BBS, 1980.');
+      case 'weak_topic': return html.replace(essay.analysis.substring(0,50), 'This topic is very interesting.');
       default: return html;
     }
   }
@@ -632,176 +586,157 @@
     const correctIdx = Math.floor(Math.random() * 3);
     let options = [];
     for (let i = 0; i < 3; i++) {
-      if (i === correctIdx) {
-        options.push({ html: buildPerfectEssay(essay), correct: true, errors: [] });
-      } else {
-        const errorKeys = Object.keys(errorDB).sort(() => Math.random() - 0.5).slice(0, 2 + Math.floor(Math.random() * 2));
-        let html = buildPerfectEssay(essay);
-        const errors = [];
-        errorKeys.forEach(key => { html = applyError(html, essay, key); errors.push(errorDB[key]); });
-        options.push({ html, correct: false, errors });
+      if (i === correctIdx) options.push({ html: buildPerfectEssay(essay), correct: true, errors: [] });
+      else {
+        const keys = Object.keys(errorDB).sort(() => Math.random() - 0.5).slice(0, 2);
+        let html = buildPerfectEssay(essay); const errs = [];
+        keys.forEach(k => { html = applyError(html, essay, k); errs.push(errorDB[k]); });
+        options.push({ html, correct: false, errors: errs });
       }
     }
     return { essay, options, correctIdx };
   }
 
   function generateSentenceMode() {
-    const errorKey = Object.keys(errorDB)[Math.floor(Math.random() * Object.keys(errorDB).length)];
-    const error = errorDB[errorKey];
-    const errorSentences = {
-      rq_broad: 'RQ: How does literature affect how people think and feel?',
-      informal_lang: "This essay will look at how the author's technique really changes things.",
+    const key = Object.keys(errorDB)[Math.floor(Math.random() * Object.keys(errorDB).length)];
+    const err = errorDB[key];
+    const bad = {
+      rq_broad: 'RQ: How does literature affect people?',
+      informal_lang: "This essay will look at how the author's technique changes things.",
       citation_format: 'Works Cited: Woolf, V. (1925) Mrs Dalloway. Hogarth Press. Genette, G. Narrative Discourse. Cornell UP, 1980.',
-      descriptive_conclusion: 'In conclusion, this essay discussed many aspects and considered various viewpoints.',
-      missing_pages: 'As Woolf demonstrates, "she had the perpetual sense of being out at sea" (Woolf, 1925).',
-      weak_topic: 'Virginia Woolf was born in 1882 and wrote many famous novels.'
+      descriptive_conclusion: 'In conclusion, this essay discussed many aspects.',
+      missing_pages: '"She had the perpetual sense of being out at sea" (Woolf, 1925).',
+      weak_topic: 'Virginia Woolf was born in 1882 and wrote many novels.'
     };
-    const correctSentences = [
-      'The analysis reveals a fluid temporality mirroring human thought (Ricoeur, 1985, p. 102).',
-      'Data reveals a 23% reduction in EU emissions between 1990 and 2020 (IPCC, 2022).',
-      'Genette distinguishes between narrative voice and focalization (Genette, 1980, pp. 185-189).',
-      'Legally binding targets were substantially more effective than voluntary contributions.',
-      'The Treaty\'s psychological impact on national identity was as crucial as economic consequences.',
-      'Microplastic concentration negatively correlated with filtration rates (r = -0.82).'
-    ];
-    const sentences = [];
-    const errorPos = Math.floor(Math.random() * 4);
-    const shuffledCorrect = correctSentences.sort(() => Math.random() - 0.5);
+    const good = ['Analysis reveals a fluid temporality (Ricoeur, p. 102).','EU emissions dropped 23% (IPCC, 2022).','Genette distinguishes voice and focalization (pp. 185-189).','Legally binding targets proved more effective.','Psychological impact was as crucial as economic consequences.','Microplastic concentration negatively correlated (r = -0.82).'];
+    const sentences = []; const errPos = Math.floor(Math.random() * 4);
+    const shuffledGood = good.sort(() => Math.random() - 0.5);
     for (let i = 0; i < 4; i++) {
-      if (i === errorPos) sentences.push({ text: errorSentences[errorKey], hasError: true, error });
-      else sentences.push({ text: shuffledCorrect[i] || shuffledCorrect[0], hasError: false, error: null });
+      if (i === errPos) sentences.push({ text: bad[key], hasError: true, error: err });
+      else sentences.push({ text: shuffledGood[i] || good[0], hasError: false, error: null });
     }
-    return { sentences, errorPos, error };
+    return { sentences, errorPos: errPos, error: err };
   }
 
   function generateMatchingMode() {
-    const pairs = [
-      { citation: 'Woolf, V. Mrs Dalloway. Hogarth Press, 1925.', grade: 'A (Excellent)', reason: 'Complete MLA format.' },
-      { citation: 'Woolf, V. mrs dalloway. hogarth press, 1925', grade: 'D (Poor)', reason: 'Capitalization errors.' },
-      { citation: 'Genette, Gérard. Narrative Discourse. Cornell UP, 1980.', grade: 'B (Good)', reason: 'Proper MLA, minor punctuation.' },
-      { citation: 'ipcc report climate change 2022', grade: 'D (Poor)', reason: 'No proper formatting.' }
+    const allPairs = [
+      { citation: 'Woolf, V. Mrs Dalloway. Hogarth Press, 1925.', grade: 'A (Excellent)', reason: 'Complete MLA: author, title, publisher, year.' },
+      { citation: 'Woolf, V. mrs dalloway. hogarth press, 1925', grade: 'D (Poor)', reason: 'Capitalization errors in title/publisher.' },
+      { citation: 'Genette, Gérard. Narrative Discourse. Cornell UP, 1980.', grade: 'B (Good)', reason: 'Proper MLA, minor punctuation variation.' },
+      { citation: 'ipcc report climate change 2022', grade: 'D (Poor)', reason: 'No proper formatting, missing publisher.' },
+      { citation: 'Keynes, J.M. The Economic Consequences. Macmillan, 1919.', grade: 'A (Excellent)', reason: 'Classic MLA format for a seminal work.' },
+      { citation: 'Searle, J. Minds Brains Programs. BBS, 1980.', grade: 'C (Adequate)', reason: 'Missing quotation marks for article title.' },
+      { citation: 'Dennett, D. Consciousness Explained. Little Brown, 1991.', grade: 'B (Good)', reason: 'Correct book format, publisher present.' },
+      { citation: 'UN. Paris Agreement. 2015.', grade: 'C (Adequate)', reason: 'Missing treaty series/volume details.' },
+      { citation: 'Evans, R. The Coming of the Third Reich. Penguin, 2004.', grade: 'A (Excellent)', reason: 'Perfect MLA book citation.' },
+      { citation: 'Rochman, C. Microplastics. EnvSci, 2019.', grade: 'C (Adequate)', reason: 'Missing article title quotes, volume.' }
     ];
-    return { pairs: pairs.sort(() => Math.random() - 0.5) };
+    // Pick 4 random pairs for variety
+    const shuffled = allPairs.sort(() => Math.random() - 0.5);
+    return { pairs: shuffled.slice(0, 4) };
   }
 
   function generateFillBlankMode() {
-    const questions = [
+    const qs = [
       { sentence: 'A focused RQ uses "______" rather than "How does..."', correct: 'To what extent', options: ['To what extent', 'How does', 'What is', 'Explain'], error: errorDB.rq_broad },
       { sentence: 'MLA citation must include author, title, publisher, and ______.', correct: 'year of publication', options: ['year of publication', 'page count', 'ISBN', 'email'], error: errorDB.citation_format },
       { sentence: 'Academic writing requires a ______ register.', correct: 'formal', options: ['formal', 'casual', 'friendly', 'simple'], error: errorDB.informal_lang },
       { sentence: 'A strong conclusion should ______ findings.', correct: 'synthesize', options: ['synthesize', 'repeat', 'list', 'ignore'], error: errorDB.descriptive_conclusion }
     ];
-    return questions[Math.floor(Math.random() * questions.length)];
+    return qs[Math.floor(Math.random() * qs.length)];
   }
 
   function generateTimelineMode() {
-    const statements = [
-      { text: 'The RQ must appear on the title page.', correct: true },
+    const stmts = [
+      { text: 'RQ must appear on the title page.', correct: true },
       { text: 'MLA uses "Works Cited" not "Bibliography".', correct: true },
       { text: 'Page numbers are required for direct quotations.', correct: true },
-      { text: 'Contractions like "don\'t" are acceptable in formal writing.', correct: false },
-      { text: 'A conclusion should introduce new arguments.', correct: false },
-      { text: 'Mixing MLA and APA in one essay is acceptable.', correct: false }
+      { text: 'Contractions are acceptable in formal writing.', correct: false },
+      { text: 'Conclusion should introduce new arguments.', correct: false },
+      { text: 'Mixing MLA and APA is acceptable.', correct: false }
     ];
-    return { statements: statements.sort(() => Math.random() - 0.5).slice(0, 4) };
+    return { statements: stmts.sort(() => Math.random() - 0.5).slice(0, 4) };
   }
 
   function generateSortingMode() {
-    const sequences = [
+    const seqs = [
       [{ text: 'Develop focused RQ', order: 1 },{ text: 'Compile bibliography', order: 2 },{ text: 'Write first draft', order: 3 },{ text: 'Apply citation style', order: 4 },{ text: 'Complete RPPF', order: 5 }],
       [{ text: 'Identify topic', order: 1 },{ text: 'Formulate RQ', order: 2 },{ text: 'Gather sources', order: 3 },{ text: 'Analyze evidence', order: 4 },{ text: 'Proofread', order: 5 }]
     ];
-    const seq = sequences[Math.floor(Math.random() * sequences.length)];
-    return { items: seq.sort(() => Math.random() - 0.5) };
+    return { items: seqs[Math.floor(Math.random() * seqs.length)].sort(() => Math.random() - 0.5) };
   }
 
-  // ============ RENDER FUNCTIONS ============
+  // ============ RENDER ============
   function renderCurrentMode() {
     const area = document.getElementById('content-area');
-    state.questionData = null;
-    state.answered = false;
-    state.selectedAnswer = null;
+    state.questionData = null; state.answered = false; state.selectedAnswer = null;
     state.matchPairs = {}; state.selectedSource = null; state.sortOrder = []; state.timelineAnswers = {};
     if (state.speedTimer) { clearInterval(state.speedTimer); state.speedTimer = null; }
-    
-    if (state.questionsAnswered >= state.totalQuestions) {
-        showGameOverScreen();
-        return;
-    }
-
+    if (state.questionsAnswered >= state.totalQuestions) { showGameOverScreen(); return; }
     switch(state.currentMode) {
-      case 'compare': renderCompareMode(area); break;
-      case 'sentence': renderSentenceMode(area); break;
-      case 'matching': renderMatchingMode(area); break;
-      case 'fillblank': renderFillBlankMode(area); break;
-      case 'timeline': renderTimelineMode(area); break;
-      case 'sorting': renderSortingMode(area); break;
+      case 'compare': renderCompare(area); break;
+      case 'sentence': renderSentence(area); break;
+      case 'matching': renderMatching(area); break;
+      case 'fillblank': renderFillBlank(area); break;
+      case 'timeline': renderTimeline(area); break;
+      case 'sorting': renderSorting(area); break;
     }
     updateStats();
   }
 
-  function renderCompareMode(area) {
-    const data = generateCompareMode(); state.questionData = data;
-    let html = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div>
-      <div class="question-card"><div class="question-header">ESSAY COMPARISON: Select the correct essay</div>`;
-    data.options.forEach((opt, i) => {
-      html += `<div class="essay-box" id="essay-${i}" onclick="selectEssay(${i})"><b>ESSAY ${String.fromCharCode(65+i)}</b><br>${opt.html}</div>`;
+  function renderCompare(area) {
+    const d = generateCompareMode(); state.questionData = d;
+    let h = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div><div class="question-card"><div class="question-header">ESSAY COMPARISON</div>`;
+    d.options.forEach((o,i) => h += `<div class="essay-box" id="essay-${i}" onclick="selectEssay(${i})"><b>ESSAY ${String.fromCharCode(65+i)}</b><br>${o.html}</div>`);
+    h += `<div class="btn-group"><button class="btn btn-primary" onclick="submitCompare()">SUBMIT</button><button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
+    area.innerHTML = h;
+  }
+
+  function renderSentence(area) {
+    const d = generateSentenceMode(); state.questionData = d;
+    let h = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div><div class="question-card"><div class="question-header">SENTENCE HUNT: ${d.error.name}</div>`;
+    d.sentences.forEach((s,i) => h += `<div class="sentence-item" id="sentence-${i}" onclick="selectSentence(${i})"><b>${i+1}.</b> ${s.text}</div>`);
+    h += `<div class="btn-group"><button class="btn btn-primary" onclick="submitSentence()">SUBMIT</button><button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
+    area.innerHTML = h;
+  }
+
+  function renderMatching(area) {
+    const d = generateMatchingMode(); state.questionData = d;
+    let h = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div><div class="question-card"><div class="question-header">CITATION MATCHING</div><div class="matching-grid"><div><b>SOURCES</b><div id="sources-list">`;
+    d.pairs.forEach((p,i) => h += `<div class="match-item" id="source-${i}" onclick="selectSource(${i})">${p.citation}</div>`);
+    h += `</div></div><div><b>GRADES</b><div id="grades-list">`;
+    const shuffled = d.pairs.map(p => ({grade:p.grade, reason:p.reason})).sort(()=>Math.random()-0.5);
+    state.questionData.shuffledGrades = shuffled;
+    shuffled.forEach((g,i) => {
+      const gc = g.grade.includes('A')?'grade-a':g.grade.includes('B')?'grade-b':g.grade.includes('C')?'grade-c':'grade-d';
+      h += `<div class="match-item" id="grade-${i}" onclick="selectGrade(${i})"><span class="grade-badge ${gc}">${g.grade}</span> ${g.reason}</div>`;
     });
-    html += `<div class="btn-group"><button class="btn btn-primary" onclick="submitCompare()">SUBMIT</button><button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
-    area.innerHTML = html;
+    h += `</div></div></div><div class="btn-group"><button class="btn btn-primary" onclick="submitMatching()">SUBMIT</button><button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
+    area.innerHTML = h;
   }
 
-  function renderSentenceMode(area) {
-    const data = generateSentenceMode(); state.questionData = data;
-    let html = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div>
-      <div class="question-card"><div class="question-header">SENTENCE HUNT: Find the ${data.error.name} error</div>`;
-    data.sentences.forEach((s, i) => { html += `<div class="sentence-item" id="sentence-${i}" onclick="selectSentence(${i})"><b>${i+1}.</b> ${s.text}</div>`; });
-    html += `<div class="btn-group"><button class="btn btn-primary" onclick="submitSentence()">SUBMIT</button><button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
-    area.innerHTML = html;
+  function renderFillBlank(area) {
+    const d = generateFillBlankMode(); state.questionData = d;
+    let h = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div><div class="question-card"><div class="question-header">FILL IN THE BLANK</div><div class="essay-box">${d.sentence.replace('______','<span style="border-bottom:2px solid #e94560; color:#e94560;">______</span>')}</div><div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:10px;">`;
+    d.options.forEach((o,i) => h += `<div class="sentence-item" id="blank-option-${i}" onclick="selectBlankOption(${i})">${o}</div>`);
+    h += `</div><div class="btn-group"><button class="btn btn-primary" onclick="submitFillBlank()">SUBMIT</button><button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
+    area.innerHTML = h;
   }
 
-  function renderMatchingMode(area) {
-    const data = generateMatchingMode(); state.questionData = data;
-    let html = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div>
-      <div class="question-card"><div class="question-header">CITATION MATCHING</div><div class="matching-grid"><div><b>SOURCES</b><div id="sources-list">`;
-    data.pairs.forEach((p,i) => { html += `<div class="match-item" id="source-${i}" onclick="selectSource(${i})">${p.citation}</div>`; });
-    html += `</div></div><div><b>GRADES</b><div id="grades-list">`;
-    const shuffledGrades = data.pairs.map(p => ({grade:p.grade, reason:p.reason})).sort(()=>Math.random()-0.5);
-    state.questionData.shuffledGrades = shuffledGrades;
-    shuffledGrades.forEach((g,i) => { const gc = g.grade.includes('A')?'grade-a':g.grade.includes('B')?'grade-b':g.grade.includes('C')?'grade-c':'grade-d';
-      html += `<div class="match-item" id="grade-${i}" onclick="selectGrade(${i})"><span class="grade-badge ${gc}">${g.grade}</span> ${g.reason}</div>`; });
-    html += `</div></div></div><div class="btn-group"><button class="btn btn-primary" onclick="submitMatching()">SUBMIT</button><button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
-    area.innerHTML = html;
+  function renderTimeline(area) {
+    const d = generateTimelineMode(); state.questionData = d; state.speedTimeLeft = 30; state.timelineAnswers = {};
+    let h = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div><div class="question-card"><div class="question-header">SPEED ROUND (30s)</div><div style="text-align:center; font-size:28px; color:#ff4444;" id="speed-timer">30</div>`;
+    d.statements.forEach((s,i) => h += `<div class="essay-box" id="timeline-${i}"><p>${s.text}</p><div class="btn-group"><button class="btn btn-primary" onclick="answerTimeline(${i},true)">CORRECT</button><button class="btn btn-secondary" onclick="answerTimeline(${i},false)">INCORRECT</button></div></div>`);
+    h += `</div><div class="feedback-panel" id="feedback-panel"></div>`;
+    area.innerHTML = h; startSpeedTimer();
   }
 
-  function renderFillBlankMode(area) {
-    const data = generateFillBlankMode(); state.questionData = data;
-    let html = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div>
-      <div class="question-card"><div class="question-header">FILL IN THE BLANK</div>
-      <div class="essay-box" style="cursor:default;">${data.sentence.replace('______','<span style="border-bottom:2px solid #e94560; color:#e94560;">______</span>')}</div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px;">`;
-    data.options.forEach((opt,i) => { html += `<div class="sentence-item" id="blank-option-${i}" onclick="selectBlankOption(${i})">${opt}</div>`; });
-    html += `</div><div class="btn-group"><button class="btn btn-primary" onclick="submitFillBlank()">SUBMIT</button><button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
-    area.innerHTML = html;
-  }
-
-  function renderTimelineMode(area) {
-    const data = generateTimelineMode(); state.questionData = data; state.speedTimeLeft = 30; state.timelineAnswers = {};
-    let html = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div>
-      <div class="question-card"><div class="question-header">SPEED ROUND (30s)</div><div style="text-align:center; font-size:32px; color:#ff4444;" id="speed-timer">30</div>`;
-    data.statements.forEach((s,i) => { html += `<div class="essay-box" id="timeline-${i}"><p>${s.text}</p><div class="btn-group"><button class="btn btn-primary" onclick="answerTimeline(${i},true)">CORRECT</button><button class="btn btn-secondary" onclick="answerTimeline(${i},false)">INCORRECT</button></div></div>`; });
-    html += `</div><div class="feedback-panel" id="feedback-panel"></div>`;
-    area.innerHTML = html;
-    startSpeedTimer();
-  }
-
-  function renderSortingMode(area) {
-    const data = generateSortingMode(); state.questionData = data;
-    let html = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div>
-      <div class="question-card"><div class="question-header">RANK ORDER: Arrange steps</div>`;
-    data.items.forEach((item,i) => { html += `<div class="essay-box" id="sort-item-${i}" onclick="selectSortItem(${i})"><span id="sort-number-${i}">#?</span> ${item.text}</div>`; });
-    html += `<div class="btn-group"><button class="btn btn-primary" onclick="submitSorting()">SUBMIT</button><button class="btn btn-secondary" onclick="resetSorting()">RESET</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
-    area.innerHTML = html;
+  function renderSorting(area) {
+    const d = generateSortingMode(); state.questionData = d;
+    let h = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div><div class="question-card"><div class="question-header">RANK ORDER</div>`;
+    d.items.forEach((item,i) => h += `<div class="essay-box" id="sort-item-${i}" onclick="selectSortItem(${i})"><span id="sort-number-${i}">#?</span> ${item.text}</div>`);
+    h += `<div class="btn-group"><button class="btn btn-primary" onclick="submitSorting()">SUBMIT</button><button class="btn btn-secondary" onclick="resetSorting()">RESET</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
+    area.innerHTML = h;
   }
 
   // ============ HANDLERS ============
@@ -819,8 +754,7 @@
 
   function skipQuestion() {
     if (state.speedTimer) clearInterval(state.speedTimer);
-    state.questionsAnswered++;
-    state.modeQuestionCount[state.currentMode]++;
+    state.questionsAnswered++; state.modeQuestionCount[state.currentMode]++;
     if (state.questionsAnswered >= state.totalQuestions) { showGameOverScreen(); return; }
     renderCurrentMode();
   }
@@ -839,8 +773,15 @@
   }
   function submitMatching() {
     if(state.answered||Object.keys(state.matchPairs).length<state.questionData.pairs.length) return;
-    state.answered=true; let correctCount=0; state.questionData.pairs.forEach((p,i)=>{ if(state.questionData.shuffledGrades[state.matchPairs[i]]?.grade===p.grade) correctCount++; });
-    processResult(correctCount===state.questionData.pairs.length); showMatchingFeedback(correctCount);
+    state.answered=true; let correctCount=0; const details = [];
+    state.questionData.pairs.forEach((p,i)=>{
+      const matched = state.questionData.shuffledGrades[state.matchPairs[i]];
+      const isCorrect = matched?.grade === p.grade;
+      if(isCorrect) correctCount++;
+      details.push({ citation: p.citation, correctGrade: p.grade, userGrade: matched?.grade || 'None', reason: p.reason, isCorrect });
+    });
+    processResult(correctCount===state.questionData.pairs.length);
+    showMatchingFeedback(correctCount, details);
   }
   function submitFillBlank() {
     if(state.answered||state.selectedAnswer===null) return;
@@ -864,26 +805,45 @@
     if(correct) { state.correctAnswers++; state.streak++; state.score+=10+state.streak*2; }
     else { state.streak=0; state.score=Math.max(0,state.score-5); }
     updateStats();
-    if (state.questionsAnswered >= state.totalQuestions) { setTimeout(showGameOverScreen, 1200); }
+    if (state.questionsAnswered >= state.totalQuestions) setTimeout(showGameOverScreen, 1000);
   }
 
   function showFeedback(correct, errors, customMsg) {
     const panel=document.getElementById('feedback-panel'); let h=`<h4 style="color:${correct?'#00cc66':'#ff4444'};">${correct?'CORRECT':'INCORRECT'}</h4>`;
     if(customMsg) h+=`<p>${customMsg}</p>`;
-    if(errors?.length) { errors.forEach(e=>h+=`<div class="error-item"><span class="grade-badge grade-d">${e.name}</span> ${e.explanation} <span style="color:#00cc66;">Fix: ${e.fix}</span></div>`); }
+    if(errors?.length) errors.forEach(e=>h+=`<div class="error-item"><span class="grade-badge grade-d">${e.name}</span> ${e.explanation} <span style="color:#00cc66;">Fix: ${e.fix}</span></div>`);
     h+=`<div class="btn-group"><button class="btn btn-primary" onclick="if(state.questionsAnswered>=state.totalQuestions)showGameOverScreen(); else renderCurrentMode();">NEXT</button></div>`;
     panel.innerHTML=h; panel.classList.add('visible'); panel.scrollIntoView({behavior:'smooth'});
   }
-  function showMatchingFeedback(correctCount) { 
-    const panel=document.getElementById('feedback-panel'); panel.innerHTML=`<h4>${correctCount}/${state.questionData.pairs.length} Matches</h4><button class="btn btn-primary" onclick="renderCurrentMode()">NEXT</button>`; panel.classList.add('visible'); }
-  function showSortingFeedback(correct) { document.getElementById('feedback-panel').innerHTML=`<h4>${correct?'Correct Order':'Incorrect'}</h4><button class="btn btn-primary" onclick="renderCurrentMode()">NEXT</button>`; document.getElementById('feedback-panel').classList.add('visible'); }
+
+  function showMatchingFeedback(correctCount, details) {
+    const panel=document.getElementById('feedback-panel');
+    let h = `<h4 style="color:${correctCount===details.length?'#00cc66':'#ff9933'};">${correctCount}/${details.length} CORRECT MATCHES</h4>`;
+    details.forEach(d => {
+      const gc = d.correctGrade.includes('A')?'grade-a':d.correctGrade.includes('B')?'grade-b':d.correctGrade.includes('C')?'grade-c':'grade-d';
+      h += `<div class="error-item" style="border-left-color:${d.isCorrect?'#00cc66':'#ff4444'};">
+        <span class="grade-badge ${gc}">${d.correctGrade}</span> <b>${d.citation.substring(0,45)}...</b>
+        <p style="margin-top:3px;"><b>Reason:</b> ${d.reason}</p>
+        ${!d.isCorrect ? `<p style="color:#ff4444;">Your match: ${d.userGrade}</p>` : ''}
+      </div>`;
+    });
+    h += `<button class="btn btn-primary" onclick="renderCurrentMode()">NEXT</button>`;
+    panel.innerHTML = h; panel.classList.add('visible'); panel.scrollIntoView({behavior:'smooth'});
+  }
+
+  function showSortingFeedback(correct) {
+    const panel=document.getElementById('feedback-panel');
+    panel.innerHTML=`<h4>${correct?'✅ Correct Order':'❌ Incorrect'}</h4><button class="btn btn-primary" onclick="renderCurrentMode()">NEXT</button>`;
+    panel.classList.add('visible');
+  }
 
   function startSpeedTimer() {
     state.speedTimeLeft=30; state.speedTimer=setInterval(()=>{ state.speedTimeLeft--; const el=document.getElementById('speed-timer'); if(el){ el.textContent=state.speedTimeLeft; if(state.speedTimeLeft<=10) el.style.color='#ff0000'; } if(state.speedTimeLeft<=0){ clearInterval(state.speedTimer); if(!state.answered) submitTimeline(); } },1000);
   }
 
   function updateStats() {
-    document.getElementById('score-display').textContent=state.score; document.getElementById('streak-display').textContent=state.streak;
+    document.getElementById('score-display').textContent=state.score;
+    document.getElementById('streak-display').textContent=state.streak;
     document.getElementById('question-display').textContent=state.questionsAnswered+'/'+state.totalQuestions;
     document.getElementById('accuracy-display').textContent=state.questionsAnswered?Math.round((state.correctAnswers/state.questionsAnswered)*100)+'%':'0%';
     document.getElementById('time-display').textContent=formatTime(state.globalTime);
@@ -896,23 +856,11 @@
     if (state.gameEnded) return;
     state.gameEnded = true;
     if (state.speedTimer) clearInterval(state.speedTimer);
-    
     const area = document.getElementById('content-area');
     const accuracy = state.questionsAnswered ? Math.round((state.correctAnswers/state.questionsAnswered)*100) : 0;
-    
-    let html = `
-      <div class="leaderboard">
-        <h2>🏆 SESSION COMPLETE 🏆</h2>
-        <p style="margin:8px 0;">Score: <b style="color:#e94560; font-size:20px;">${state.score}</b> | Accuracy: ${accuracy}%</p>
-        <div class="input-group">
-          <label style="color:#c0c0c0; font-weight:600;">INITIALS:</label>
-          <input type="text" id="initials-input" class="initials-input" maxlength="3" placeholder="ABC" autocomplete="off">
-          <button class="btn btn-primary" onclick="submitInitials()">SAVE</button>
-        </div>
-        <p id="initials-error" style="color:#ff4444; display:none; font-size:12px;">Please enter 1-3 letters.</p>
-      </div>
-      <div id="persistent-leaderboard"></div>
-    `;
+    let html = `<div class="leaderboard"><h2>🏆 SESSION COMPLETE</h2><p style="margin:6px 0;">Score: <b style="color:#e94560; font-size:18px;">${state.score}</b> | Accuracy: ${accuracy}%</p>
+      <div class="input-group"><label style="color:#c0c0c0;">INITIALS:</label><input type="text" id="initials-input" class="initials-input" maxlength="3" placeholder="ABC" autocomplete="off"><button class="btn btn-primary" onclick="submitInitials()">SAVE</button></div>
+      <p id="initials-error" style="color:#ff4444; display:none; font-size:11px;">1-3 letters required.</p></div><div id="persistent-leaderboard"></div>`;
     area.innerHTML = html;
     renderPersistentLeaderboard();
   }
@@ -921,105 +869,49 @@
     const input = document.getElementById('initials-input');
     const errorEl = document.getElementById('initials-error');
     const initials = input.value.trim().toUpperCase();
-    
-    if (!/^[A-Z]{1,3}$/.test(initials)) {
-      errorEl.style.display = 'block';
-      input.focus();
-      return;
-    }
-    
-    errorEl.style.display = 'none';
-    state.playerInitials = initials;
-    
-    const entry = {
-      initials: initials,
-      score: state.score,
-      accuracy: state.questionsAnswered ? Math.round((state.correctAnswers/state.questionsAnswered)*100) : 0,
-      time: formatTime(state.globalTime),
-      date: new Date().toLocaleDateString()
-    };
-    
-    const persistent = loadPersistentLeaderboard();
-    persistent.push(entry);
-    savePersistentLeaderboard(persistent);
+    if (!/^[A-Z]{1,3}$/.test(initials)) { errorEl.style.display='block'; input.focus(); return; }
+    errorEl.style.display='none'; state.playerInitials = initials;
+    const entry = { initials, score: state.score, accuracy: state.questionsAnswered?Math.round((state.correctAnswers/state.questionsAnswered)*100):0, time: formatTime(state.globalTime), date: new Date().toLocaleDateString() };
+    const persistent = loadPersistentLeaderboard(); persistent.push(entry); savePersistentLeaderboard(persistent);
     renderPersistentLeaderboard(initials);
-    
-    input.disabled = true;
-    document.querySelector('.input-group .btn-primary').disabled = true;
-    document.querySelector('.input-group .btn-primary').textContent = 'SAVED ✓';
+    input.disabled = true; document.querySelector('.input-group .btn-primary').disabled = true; document.querySelector('.input-group .btn-primary').textContent = 'SAVED ✓';
   }
 
   function renderPersistentLeaderboard(highlightInitials = null) {
     const container = document.getElementById('persistent-leaderboard');
     if (!container) return;
-    
     const persistent = loadPersistentLeaderboard();
-    
-    if (persistent.length === 0) {
-      container.innerHTML = '<div class="leaderboard"><p style="color:#a0a0a0;">No scores yet. Be the first!</p></div>';
-      return;
-    }
-    
-    let html = `
-      <div class="leaderboard">
-        <h2>📜 ALL-TIME LEADERS 📜</h2>
-        <p class="subtitle">Top ${persistent.length} Scores</p>
-    `;
-    
+    if (persistent.length === 0) { container.innerHTML = '<div class="leaderboard"><p>No scores yet.</p></div>'; return; }
+    let html = `<div class="leaderboard"><h2>📜 ALL-TIME LEADERS</h2><p class="subtitle">Top ${persistent.length}</p>`;
     persistent.forEach((entry, index) => {
       const isHighlight = highlightInitials && entry.initials === highlightInitials && entry.score === state.score;
-      html += `
-        <div class="leaderboard-entry ${isHighlight ? 'highlight' : ''}">
-          <span class="leaderboard-rank">#${index + 1}</span>
-          <span class="leaderboard-initials">${entry.initials}</span>
-          <span>Score: <span class="leaderboard-score">${entry.score}</span></span>
-          <span>Acc: ${entry.accuracy}%</span>
-          <span style="font-size:11px;">${entry.time}</span>
-          <span style="font-size:10px; color:#666;">${entry.date || ''}</span>
-        </div>
-      `;
+      html += `<div class="leaderboard-entry ${isHighlight?'highlight':''}"><span class="leaderboard-rank">#${index+1}</span><span class="leaderboard-initials">${entry.initials}</span><span>Score: <span class="leaderboard-score">${entry.score}</span></span><span>Acc: ${entry.accuracy}%</span><span style="font-size:10px;">${entry.time}</span><span style="font-size:9px; color:#666;">${entry.date||''}</span></div>`;
     });
-    
-    html += `
-        <button class="btn btn-primary" style="margin-top:12px;" onclick="resetGame()">PLAY AGAIN</button>
-        <button class="clear-scores-btn" onclick="clearAllScores()">🗑️ CLEAR ALL</button>
-      </div>
-    `;
-    
+    html += `<button class="btn btn-primary" style="margin-top:10px;" onclick="resetGame()">PLAY AGAIN</button><button class="clear-scores-btn" onclick="clearAllScores()">🗑️ CLEAR</button></div>`;
     container.innerHTML = html;
   }
 
-  function clearAllScores() {
-    if (confirm('Permanently delete all saved leaderboard scores?')) {
-      localStorage.removeItem(STORAGE_KEY);
-      renderPersistentLeaderboard();
-    }
-  }
+  function clearAllScores() { if(confirm('Delete all saved scores?')) { localStorage.removeItem(STORAGE_KEY); renderPersistentLeaderboard(); } }
 
   function resetGame() {
-    state.score = 0; state.questionsAnswered = 0; state.streak = 0; state.correctAnswers = 0; state.globalTime = 0;
-    state.modeTimers = { compare:0, sentence:0, matching:0, fillblank:0, timeline:0, sorting:0 };
-    state.modeQuestionCount = { compare:0, sentence:0, matching:0, fillblank:0, timeline:0, sorting:0 };
-    state.gameEnded = false;
-    state.playerInitials = null;
-    document.getElementById('leaderboard-container').innerHTML = '';
-    const area = document.getElementById('content-area');
-    if (area) area.innerHTML = '';
-    clearInterval(state.modeIntervalId);
-    startModeTimerInterval();
-    renderCurrentMode();
+    state.score=0; state.questionsAnswered=0; state.streak=0; state.correctAnswers=0; state.globalTime=0;
+    state.modeTimers={compare:0,sentence:0,matching:0,fillblank:0,timeline:0,sorting:0};
+    state.modeQuestionCount={compare:0,sentence:0,matching:0,fillblank:0,timeline:0,sorting:0};
+    state.gameEnded=false; state.playerInitials=null;
+    document.getElementById('leaderboard-container').innerHTML='';
+    document.getElementById('content-area').innerHTML='';
+    clearInterval(state.modeIntervalId); startModeTimerInterval(); renderCurrentMode();
   }
 
   function startModeTimerInterval() {
-      if (state.modeIntervalId) clearInterval(state.modeIntervalId);
-      state.modeIntervalId = setInterval(() => {
-          if (state.gameEnded) return;
-          state.globalTime++;
-          state.modeTimers[state.currentMode]++;
-          document.getElementById('time-display').textContent = formatTime(state.globalTime);
-          const timerEl = document.getElementById('timer-'+state.currentMode);
-          if (timerEl) timerEl.textContent = formatTime(state.modeTimers[state.currentMode]);
-      }, 1000);
+    if(state.modeIntervalId) clearInterval(state.modeIntervalId);
+    state.modeIntervalId = setInterval(() => {
+      if(state.gameEnded) return;
+      state.globalTime++; state.modeTimers[state.currentMode]++;
+      document.getElementById('time-display').textContent = formatTime(state.globalTime);
+      const el = document.getElementById('timer-'+state.currentMode);
+      if(el) el.textContent = formatTime(state.modeTimers[state.currentMode]);
+    }, 1000);
   }
 
   document.getElementById('mode-nav').addEventListener('click', function(e) {
@@ -1028,44 +920,20 @@
     document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     state.currentMode = btn.dataset.mode;
-    if (state.speedTimer) { clearInterval(state.speedTimer); state.speedTimer = null; }
-    if (state.questionsAnswered >= state.totalQuestions) { showGameOverScreen(); return; }
+    if(state.speedTimer) { clearInterval(state.speedTimer); state.speedTimer = null; }
+    if(state.questionsAnswered >= state.totalQuestions) { showGameOverScreen(); return; }
     renderCurrentMode();
   });
 
   document.addEventListener('keydown', function(e) {
-    if (state.gameEnded) {
-        if (e.key === 'Enter') { const input = document.getElementById('initials-input'); if (input && document.activeElement === input) submitInitials(); }
-        return;
-    }
-    if (state.answered) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (state.questionsAnswered >= state.totalQuestions) showGameOverScreen(); else renderCurrentMode(); }
-        return;
-    }
+    if(state.gameEnded) { if(e.key==='Enter'){ const inp=document.getElementById('initials-input'); if(inp&&document.activeElement===inp) submitInitials(); } return; }
+    if(state.answered) { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(state.questionsAnswered>=state.totalQuestions) showGameOverScreen(); else renderCurrentMode(); } return; }
     const num = parseInt(e.key);
-    if (num >= 1 && num <= 4) {
-        e.preventDefault(); const index = num - 1;
-        switch(state.currentMode) {
-            case 'compare': selectEssay(index); break;
-            case 'sentence': selectSentence(index); break;
-            case 'fillblank': selectBlankOption(index); break;
-        }
-    }
-    if (e.key === 'Enter') {
-        e.preventDefault();
-        switch(state.currentMode) {
-            case 'compare': submitCompare(); break;
-            case 'sentence': submitSentence(); break;
-            case 'matching': submitMatching(); break;
-            case 'fillblank': submitFillBlank(); break;
-            case 'sorting': submitSorting(); break;
-        }
-    }
+    if(num>=1&&num<=4){ e.preventDefault(); const i=num-1; switch(state.currentMode){ case'compare':selectEssay(i);break; case'sentence':selectSentence(i);break; case'fillblank':selectBlankOption(i);break; } }
+    if(e.key==='Enter'){ e.preventDefault(); switch(state.currentMode){ case'compare':submitCompare();break; case'sentence':submitSentence();break; case'matching':submitMatching();break; case'fillblank':submitFillBlank();break; case'sorting':submitSorting();break; } }
   });
 
-  startModeTimerInterval();
-  renderCurrentMode();
-  updateStats();
+  startModeTimerInterval(); renderCurrentMode(); updateStats();
 </script>
 
 </body>
