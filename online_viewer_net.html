@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>IB EE Examiner Training Suite v2.0</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1a1a2e;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #e0e0e0;
+      padding: 10px;
+      min-height: 100vh;
+    }
+
+    .main-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #16213e;
+      border: 2px solid #0f3460;
+      border-radius: 12px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.5);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(180deg, #0f3460, #16213e);
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #e94560;
+    }
+
+    .header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #e94560;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .header .subtitle {
+      font-size: 14px;
+      color: #a0a0a0;
+      margin-top: 4px;
+    }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 8px;
+      padding: 12px;
+      background: #0f3460;
+      border-bottom: 1px solid #1a1a4e;
+    }
+
+    .stat-item {
+      background: #16213e;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #1a1a4e;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      color: #e94560;
+      font-weight: 700;
+    }
+
+    .mode-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 10px;
+      background: #0a0a1a;
+      border-bottom: 1px solid #1a1a4e;
+    }
+
+    .mode-btn {
+      padding: 10px 14px;
+      background: #16213e;
+      border: 1px solid #1a1a4e;
+      color: #a0a0a0;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .mode-btn:hover {
+      background: #0f3460;
+      border-color: #e94560;
+      color: #e94560;
+    }
+
+    .mode-btn.active {
+      background: #e94560;
+      color: white;
+      border-color: #c23152;
+      box-shadow: 0 0 20px rgba(233,69,96,0.3);
+    }
+
+    .content-area {
+      padding: 20px;
+      min-height: 500px;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: #0a0a1a;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #e94560, #ff6b6b);
+      transition: width 0.5s ease;
+    }
+
+    .question-card {
+      background: #1a1a2e;
+      border: 1px solid #0f3460;
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .question-header {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e94560;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #0f3460;
+    }
+
+    .essay-box {
+      background: #0a0a1a;
+      border: 2px solid #1a1a4e;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #e0e0e0;
+    }
+
+    .essay-box:hover {
+      border-color: #e94560;
+      background: #12122a;
+    }
+
+    .essay-box.selected {
+      border-color: #e94560;
+      background: #1a0a1a;
+      box-shadow: 0 0 20px rgba(233,69,96,0.3);
+    }
+
+    .essay-box.correct {
+      border-color: #00cc66;
+      background: #0a1a0a;
+    }
+
+    .essay-box.incorrect {
+      border-color: #ff4444;
+      background: #1a0a0a;
+    }
+
+    .essay-label {
+      font-weight: 700;
+      color: #e94560;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .essay-section {
+      margin-bottom: 12px;
+    }
+
+    .essay-section h4 {
+      color: #ff6b6b;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .essay-section p {
+      margin-left: 8px;
+      color: #c0c0c0;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #e94560;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #c23152;
+    }
+
+    .btn-secondary {
+      background: #0f3460;
+      color: white;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .feedback-panel {
+      background: #1a1a2e;
+      border: 1px solid #0f3460;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 16px;
+      display: none;
+    }
+
+    .feedback-panel.visible {
+      display: block;
+    }
+
+    .error-item {
+      background: #0a0a1a;
+      border-left: 4px solid #e94560;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 4px;
+    }
+
+    .grade-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    .grade-a { background: #00cc66; color: white; }
+    .grade-b { background: #33cc33; color: white; }
+    .grade-c { background: #ff9933; color: white; }
+    .grade-d { background: #ff4444; color: white; }
+
+    .sentence-item {
+      background: #0a0a1a;
+      border: 2px solid #1a1a4e;
+      border-radius: 6px;
+      padding: 14px;
+      margin: 8px 0;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .sentence-item:hover {
+      border-color: #e94560;
+    }
+
+    .sentence-item.selected {
+      border-color: #e94560;
+      background: #1a0a1a;
+    }
+
+    .matching-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .match-item {
+      background: #0a0a1a;
+      border: 2px solid #1a1a4e;
+      border-radius: 6px;
+      padding: 12px;
+      margin: 6px 0;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .match-item.selected {
+      border-color: #e94560;
+    }
+
+    .match-item.matched {
+      border-color: #00cc66;
+      background: #0a1a0a;
+    }
+
+    @media (max-width: 600px) {
+      .header h1 { font-size: 20px; }
+      .essay-box { font-size: 13px; padding: 14px; }
+      .matching-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-container">
+  <div class="header">
+    <h1>IB EE Examiner Training Suite</h1>
+    <div class="subtitle">Professional Assessment Tool v2.0</div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div>LEVEL</div>
+      <div class="stat-value" id="level-display">1</div>
+    </div>
+    <div class="stat-item">
+      <div>SCORE</div>
+      <div class="stat-value" id="score-display">0</div>
+    </div>
+    <div class="stat-item">
+      <div>STREAK</div>
+      <div class="stat-value" id="streak-display">0</div>
+    </div>
+    <div class="stat-item">
+      <div>ACCURACY</div>
+      <div class="stat-value" id="accuracy-display">0%</div>
+    </div>
+    <div class="stat-item">
+      <div>QUESTIONS</div>
+      <div class="stat-value" id="question-display">0/30</div>
+    </div>
+    <div class="stat-item">
+      <div>TIME</div>
+      <div class="stat-value" id="time-display">0:00</div>
+    </div>
+  </div>
+
+  <div class="mode-nav" id="mode-nav">
+    <button class="mode-btn active" data-mode="compare">Essay Compare</button>
+    <button class="mode-btn" data-mode="sentence">Sentence Hunt</button>
+    <button class="mode-btn" data-mode="matching">Cite Match</button>
+    <button class="mode-btn" data-mode="fillblank">Fill Blank</button>
+    <button class="mode-btn" data-mode="timeline">Speed Round</button>
+    <button class="mode-btn" data-mode="sorting">Rank Order</button>
+  </div>
+
+  <div class="content-area" id="content-area"></div>
+</div>
+
+<script>
+  // ============ GAME STATE ============
+  const state = {
+    score: 0,
+    questionsAnswered: 0,
+    totalQuestions: 0,
+    streak: 0,
+    correctAnswers: 0,
+    level: 1,
+    timeElapsed: 0,
+    currentMode: 'compare',
+    modeQuestionCount: { compare: 0, sentence: 0, matching: 0, fillblank: 0, timeline: 0, sorting: 0 },
+    questionData: null,
+    answered: false,
+    selectedAnswer: null,
+    speedTimer: null,
+    speedTimeLeft: 0,
+    matchPairs: {},
+    selectedSource: null,
+    sortOrder: [],
+    timelineAnswers: {}
+  };
+
+  // ============ COMPLETE ESSAY DATABASE ============
+  const essayDB = [
+    {
+      id: 'eng1',
+      subject: 'English A: Literature',
+      rq: 'To what extent does Virginia Woolf\'s use of free indirect discourse in Mrs Dalloway influence the reader\'s perception of time and consciousness?',
+      candidate: '004512-0032',
+      session: 'May 2024',
+      intro: 'This extended essay examines the narrative technique of free indirect discourse in Virginia Woolf\'s modernist novel Mrs Dalloway (1925). The investigation focuses on how Woolf\'s manipulation of narrative perspective fundamentally alters the reader\'s experience of temporality and psychological interiority, challenging the conventions of linear narrative structure prevalent in the nineteenth-century novel.',
+      analysis: 'Through close reading of key passages—including Clarissa Dalloway\'s morning walk through London and Septimus Warren Smith\'s fragmented perceptions in Regent\'s Park—this analysis demonstrates how Woolf\'s seamless movement between third-person narration and characters\' internal thoughts creates what Paul Ricoeur terms "narrative time." Genette\'s narratological framework (1980) provides the theoretical lens for distinguishing between narrative voice and focalization, revealing how Woolf destabilizes the boundary between external event and internal experience.',
+      conclusion: 'The investigation concludes that Woolf\'s innovative use of free indirect discourse is central to her modernist project of representing consciousness. By creating a fluid temporality that mirrors human thought processes, Woolf invites readers to inhabit multiple temporal planes simultaneously, fundamentally reshaping the novel form\'s engagement with phenomenological time.',
+      works: [
+        'Woolf, Virginia. Mrs Dalloway. Hogarth Press, 1925.',
+        'Genette, Gérard. Narrative Discourse: An Essay in Method. Cornell University Press, 1980.',
+        'Ricoeur, Paul. Time and Narrative, Volume 2. University of Chicago Press, 1985.'
+      ]
+    },
+    {
+      id: 'geo1',
+      subject: 'Geography',
+      rq: 'To what extent have international climate agreements been effective in reducing carbon emissions among signatory nations since 1997?',
+      candidate: '007821-0045',
+      session: 'November 2023',
+      intro: 'This geography extended essay evaluates the measurable impact of international climate agreements—specifically the Kyoto Protocol (1997) and the Paris Agreement (2015)—on national carbon emission trajectories. The study conducts comparative analysis between European Union member states, which accepted binding targets, and major developing economies operating under voluntary frameworks.',
+      analysis: 'Quantitative data from the World Bank and the IPCC Sixth Assessment Report (2022) reveals a statistically significant 23% reduction in EU emissions between 1990-2020. In contrast, India\'s emissions increased by 14% over the same period despite its Paris Agreement commitments. Qualitative policy analysis indicates that legally binding emission targets with compliance mechanisms were substantially more effective than the voluntary Nationally Determined Contributions (NDCs) structure adopted in 2015.',
+      conclusion: 'The evidence demonstrates that while international agreements provide essential diplomatic frameworks, their effectiveness in achieving measurable emission reductions is contingent upon binding enforcement mechanisms and equitable burden-sharing provisions. The shift from mandatory targets to voluntary pledges represents a politically necessary compromise that has nonetheless diminished practical climate outcomes.',
+      works: [
+        'IPCC. Climate Change 2022: Mitigation of Climate Change. Cambridge University Press, 2022.',
+        'United Nations. Paris Agreement. Treaty Series, vol. 3156, 2015.',
+        'World Bank. State and Trends of Carbon Pricing 2023. World Bank Publications, 2023.'
+      ]
+    },
+    {
+      id: 'phil1',
+      subject: 'Philosophy',
+      rq: 'To what extent can John Searle\'s Chinese Room argument be considered a decisive refutation of strong artificial intelligence?',
+      candidate: '003409-0018',
+      session: 'May 2025',
+      intro: 'This philosophy extended essay critically evaluates the logical force of John Searle\'s Chinese Room thought experiment as a counterargument to the claims of strong artificial intelligence. The investigation situates Searle\'s argument within broader debates about consciousness, intentionality, and machine understanding.',
+      analysis: 'Searle\'s central distinction between syntactic manipulation and semantic understanding provides a powerful philosophical challenge to functionalist theories of mind. However, responses from Daniel Dennett and the systems reply suggest that Searle\'s argument may rely on intuitive but philosophically questionable assumptions about the nature of understanding. The analysis weighs the logical coherence of each position against empirical developments in AI research.',
+      conclusion: 'While the Chinese Room argument successfully highlights the difference between simulation and genuine understanding, it does not constitute a decisive refutation of strong AI. The argument\'s force depends on contestable premises about consciousness that remain philosophically unresolved, particularly given advances in neural network architectures.',
+      works: [
+        'Searle, John R. "Minds, Brains, and Programs." Behavioral and Brain Sciences, vol. 3, no. 3, 1980, pp. 417-457.',
+        'Dennett, Daniel C. Consciousness Explained. Little, Brown and Company, 1991.',
+        'Bostrom, Nick. Superintelligence: Paths, Dangers, Strategies. Oxford University Press, 2014.'
+      ]
+    }
+  ];
+
+  // ============ ERROR DEFINITIONS ============
+  const errorDB = {
+    rq_broad: {
+      name: 'Overly Broad Research Question',
+      criterion: 'A',
+      grade: 'D',
+      explanation: 'The research question lacks the specificity required for a focused 4000-word investigation. Criterion A demands a sharply focused question that allows for evaluation rather than description.',
+      fix: 'Add specific context, variables, and analytical framing. Use phrases like "To what extent" or "How significantly" rather than "How does" or "What is".'
+    },
+    informal_lang: {
+      name: 'Informal Academic Register',
+      criterion: 'B',
+      grade: 'D',
+      explanation: 'The essay uses colloquial language and conversational tone inappropriate for academic writing. Criterion B expects formal academic register and subject-specific terminology throughout.',
+      fix: 'Replace informal phrases with academic equivalents. Avoid contractions, slang, and first-person casual observations.'
+    },
+    citation_format: {
+      name: 'Inconsistent Citation Formatting',
+      criterion: 'D',
+      grade: 'C',
+      explanation: 'Citations mix different formatting styles and contain inconsistencies. Criterion D requires consistent application of one recognized citation style throughout the essay.',
+      fix: 'Choose one citation style (MLA, APA, Chicago) and apply it identically to every source. Ensure all required elements are present.'
+    },
+    descriptive_conclusion: {
+      name: 'Descriptive Rather Than Analytical Conclusion',
+      criterion: 'C',
+      grade: 'D',
+      explanation: 'The conclusion merely summarizes the discussion without synthesizing findings or directly answering the research question. Criterion C requires analytical evaluation in the conclusion.',
+      fix: 'Synthesize your findings to directly address the research question. Show what your analysis proved rather than what you discussed.'
+    },
+    missing_pages: {
+      name: 'Missing Page Numbers in Citations',
+      criterion: 'D',
+      grade: 'C',
+      explanation: 'Direct quotations and specific references lack page numbers. This prevents verification of sources and weakens academic credibility.',
+      fix: 'Include page numbers for all direct quotations and specific claims referenced from sources.'
+    },
+    weak_topic: {
+      name: 'Weak Topic Sentences',
+      criterion: 'C',
+      grade: 'D',
+      explanation: 'Paragraphs begin with factual statements rather than analytical claims. Strong academic writing opens paragraphs with arguments, then supports them with evidence.',
+      fix: 'Start each paragraph with an analytical claim that advances your argument, then use evidence to support it.'
+    }
+  };
+
+  // ============ BUILD PERFECT ESSAY HTML ============
+  function buildPerfectEssay(essay) {
+    return `
+      <div class="essay-label">Title Page</div>
+      <div class="essay-section">
+        <p><b>Research Question:</b> ${essay.rq}</p>
+        <p><b>Subject:</b> ${essay.subject}</p>
+        <p><b>Candidate Number:</b> ${essay.candidate}</p>
+        <p><b>Session:</b> ${essay.session}</p>
+      </div>
+      <hr style="border:1px solid #1a1a4e; margin:10px 0;">
+      <div class="essay-section">
+        <h4>Introduction</h4>
+        <p>${essay.intro}</p>
+      </div>
+      <div class="essay-section">
+        <h4>Analysis</h4>
+        <p>${essay.analysis}</p>
+      </div>
+      <div class="essay-section">
+        <h4>Conclusion</h4>
+        <p>${essay.conclusion}</p>
+      </div>
+      <div class="essay-section">
+        <h4>Works Cited</h4>
+        ${essay.works.map(w => `<p>${w}</p>`).join('')}
+      </div>
+    `;
+  }
+
+  // ============ APPLY ERRORS TO ESSAY ============
+  function applyError(html, essay, errorKey) {
+    switch(errorKey) {
+      case 'rq_broad':
+        return html.replace(essay.rq, 'How does literature affect how people think?');
+      case 'informal_lang':
+        return html
+          .replace('This extended essay examines', 'This essay will look at')
+          .replace('fundamentally alters', 'really changes')
+          .replace('The investigation concludes', 'So in the end, we can see')
+          .replace('demonstrates how', 'shows how');
+      case 'citation_format':
+        if (essay.id === 'eng1') {
+          return html.replace('Woolf, Virginia. Mrs Dalloway. Hogarth Press, 1925.', 'Woolf, V. (1925) Mrs Dalloway. Hogarth Press.');
+        } else if (essay.id === 'geo1') {
+          return html.replace('IPCC. Climate Change 2022: Mitigation of Climate Change. Cambridge University Press, 2022.', 'ipcc report 2022. cambridge university press.');
+        } else {
+          return html.replace('Searle, John R. "Minds, Brains, and Programs." Behavioral and Brain Sciences, vol. 3, no. 3, 1980, pp. 417-457.', 'Searle, J. Minds Brains Programs. Behavioral and Brain Sciences, 1980.');
+        }
+      case 'descriptive_conclusion':
+        return html.replace(essay.conclusion, 'In conclusion, this essay has discussed many different aspects of the topic. Various viewpoints were considered and analyzed. More research could be done on this topic in the future to understand it better.');
+      case 'missing_pages':
+        return html.replace('pp. 417-457', '').replace('vol. 3156', '');
+      case 'weak_topic':
+        return html.replace(essay.analysis.substring(0, 100), `${essay.subject === 'English A: Literature' ? 'Mrs Dalloway was published in 1925 by Virginia Woolf. The novel takes place over the course of a single day in June.' : essay.subject === 'Geography' ? 'Climate change is a major global issue that affects many countries around the world.' : 'Artificial intelligence has become increasingly important in recent years and many philosophers have written about it.'}`);
+      default:
+        return html;
+    }
+  }
+
+  // ============ MODE GENERATORS ============
+  function generateCompareMode() {
+    const essay = essayDB[Math.floor(Math.random() * essayDB.length)];
+    const numOptions = 3;
+    const correctIdx = Math.floor(Math.random() * numOptions);
+    let options = [];
+    
+    for (let i = 0; i < numOptions; i++) {
+      if (i === correctIdx) {
+        options.push({ html: buildPerfectEssay(essay), correct: true, errors: [] });
+      } else {
+        const errorKeys = Object.keys(errorDB).sort(() => Math.random() - 0.5).slice(0, 2 + Math.floor(Math.random() * 2));
+        let html = buildPerfectEssay(essay);
+        const errors = [];
+        errorKeys.forEach(key => {
+          html = applyError(html, essay, key);
+          errors.push(errorDB[key]);
+        });
+        options.push({ html, correct: false, errors });
+      }
+    }
+    
+    return { essay, options, correctIdx };
+  }
+
+  function generateSentenceMode() {
+    const errorKey = Object.keys(errorDB)[Math.floor(Math.random() * Object.keys(errorDB).length)];
+    const error = errorDB[errorKey];
+    
+    const errorSentences = {
+      rq_broad: 'Research Question: How does literature affect how people think and feel about the world around them?',
+      informal_lang: "This essay will look at how the author's technique really changes the way readers experience the story and makes them feel different emotions.",
+      citation_format: 'Works Cited: Woolf, V. (1925) Mrs Dalloway. Hogarth Press. Genette, G. Narrative Discourse. Cornell UP, 1980.',
+      descriptive_conclusion: 'In conclusion, this essay has discussed many different aspects of the topic and considered various viewpoints from different scholars.',
+      missing_pages: 'As Woolf demonstrates, "she had the perpetual sense of being out at sea and alone" (Woolf, 1925).',
+      weak_topic: 'Virginia Woolf was born in 1882 and wrote many famous novels including Mrs Dalloway which was published in 1925.'
+    };
+    
+    const correctSentences = [
+      'The analysis reveals that Woolf\'s narrative technique creates a fluid temporality that mirrors human thought processes (Ricoeur, 1985, p. 102).',
+      'This extended essay examines how narrative perspective fundamentally alters the reader\'s experience of psychological interiority.',
+      'Quantitative data from the IPCC Sixth Assessment Report (2022) reveals a statistically significant 23% reduction in EU emissions between 1990 and 2020.',
+      'Genette\'s narratological framework provides the theoretical foundation for distinguishing between narrative voice and focalization (Genette, 1980, pp. 185-189).',
+      'The investigation concludes that international climate agreements\' effectiveness is contingent upon binding enforcement mechanisms.',
+      'Searle\'s distinction between syntactic manipulation and semantic understanding challenges functionalist theories of artificial intelligence (Searle, 1980, p. 422).',
+      'The evidence demonstrates that legally binding emission targets were substantially more effective than voluntary Nationally Determined Contributions.',
+      'Woolf\'s deployment of free indirect discourse fundamentally restructures the reader\'s temporal experience of the narrative.'
+    ];
+    
+    const sentences = [];
+    const errorPos = Math.floor(Math.random() * 4);
+    const shuffledCorrect = correctSentences.sort(() => Math.random() - 0.5);
+    
+    for (let i = 0; i < 4; i++) {
+      if (i === errorPos) {
+        sentences.push({ text: errorSentences[errorKey], hasError: true, error });
+      } else {
+        sentences.push({ text: shuffledCorrect[i] || shuffledCorrect[0], hasError: false, error: null });
+      }
+    }
+    
+    return { sentences, errorPos, error };
+  }
+
+  function generateMatchingMode() {
+    const pairs = [
+      { 
+        citation: 'Woolf, Virginia. Mrs Dalloway. Hogarth Press, 1925.', 
+        grade: 'A (Excellent)', 
+        reason: 'Complete MLA format: author, title, publisher, year. All elements present and correctly formatted.' 
+      },
+      { 
+        citation: 'Woolf, V. mrs dalloway. hogarth press, 1925', 
+        grade: 'D (Poor)', 
+        reason: 'Capitalization errors in title and publisher. Abbreviated first name. Multiple formatting issues.' 
+      },
+      { 
+        citation: 'Genette, Gérard. Narrative Discourse. Cornell University Press, 1980.', 
+        grade: 'B (Good)', 
+        reason: 'Proper MLA format with full author name, complete title, publisher, and year. Minor punctuation variation acceptable.' 
+      },
+      { 
+        citation: 'ipcc report climate change 2022', 
+        grade: 'D (Poor)', 
+        reason: 'No proper formatting. Institutional author not properly cited. Missing publisher and proper title capitalization.' 
+      }
+    ];
+    
+    return { pairs: pairs.sort(() => Math.random() - 0.5) };
+  }
+
+  function generateFillBlankMode() {
+    const questions = [
+      {
+        sentence: 'A focused research question should use phrases like "______" rather than "How does..." to ensure analytical depth.',
+        correct: 'To what extent',
+        options: ['To what extent', 'How does', 'What is', 'Can you explain'],
+        error: errorDB.rq_broad
+      },
+      {
+        sentence: 'In MLA format, a book citation must include the author, title, publisher, and ______.',
+        correct: 'year of publication',
+        options: ['year of publication', 'page count', 'ISBN number', 'author\'s email'],
+        error: errorDB.citation_format
+      },
+      {
+        sentence: 'Academic writing requires a ______ register rather than conversational or colloquial language.',
+        correct: 'formal',
+        options: ['formal', 'casual', 'friendly', 'simple'],
+        error: errorDB.informal_lang
+      },
+      {
+        sentence: 'A strong conclusion should ______ the findings rather than simply summarizing the discussion.',
+        correct: 'synthesize',
+        options: ['synthesize', 'repeat', 'list', 'ignore'],
+        error: errorDB.descriptive_conclusion
+      }
+    ];
+    
+    return questions[Math.floor(Math.random() * questions.length)];
+  }
+
+  function generateTimelineMode() {
+    const statements = [
+      { text: 'The research question must appear on the title page of the Extended Essay.', correct: true },
+      { text: 'MLA format requires a "Works Cited" heading rather than "Bibliography" for cited sources.', correct: true },
+      { text: 'Page numbers are required for all direct quotations in academic writing.', correct: true },
+      { text: 'It is acceptable to use contractions like "don\'t" in formal academic writing.', correct: false },
+      { text: 'A conclusion should introduce new arguments not previously discussed in the essay.', correct: false },
+      { text: 'Mixing MLA and APA citation styles within one essay is acceptable as long as each is used consistently.', correct: false }
+    ];
+    
+    return { statements: statements.sort(() => Math.random() - 0.5).slice(0, 4) };
+  }
+
+  function generateSortingMode() {
+    const items = [
+      { text: 'Develop a focused research question with specific scope', order: 1, phase: 'Planning' },
+      { text: 'Conduct research and compile preliminary bibliography', order: 2, phase: 'Research' },
+      { text: 'Write first complete draft with introduction, body, and conclusion', order: 3, phase: 'Drafting' },
+      { text: 'Apply consistent citation style to all references', order: 4, phase: 'Revision' },
+      { text: 'Complete the Reflections on Planning and Progress Form (RPPF)', order: 5, phase: 'Final' }
+    ];
+    
+    return { items: items.sort(() => Math.random() - 0.5) };
+  }
+
+  // ============ RENDER FUNCTIONS ============
+  function renderCurrentMode() {
+    const area = document.getElementById('content-area');
+    state.questionData = null;
+    state.answered = false;
+    state.selectedAnswer = null;
+    state.matchPairs = {};
+    state.selectedSource = null;
+    state.sortOrder = [];
+    state.timelineAnswers = {};
+    
+    if (state.speedTimer) {
+      clearInterval(state.speedTimer);
+      state.speedTimer = null;
+    }
+    
+    switch(state.currentMode) {
+      case 'compare': renderCompareMode(area); break;
+      case 'sentence': renderSentenceMode(area); break;
+      case 'matching': renderMatchingMode(area); break;
+      case 'fillblank': renderFillBlankMode(area); break;
+      case 'timeline': renderTimelineMode(area); break;
+      case 'sorting': renderSortingMode(area); break;
+    }
+    
+    updateStats();
+  }
+
+  function renderCompareMode(area) {
+    const data = generateCompareMode();
+    state.questionData = data;
+    state.totalQuestions++;
+    
+    let html = `
+      <div class="progress-bar"><div class="progress-fill" style="width:${(state.modeQuestionCount.compare / 5) * 100}%"></div></div>
+      <div class="question-card">
+        <div class="question-header">ESSAY COMPARISON: Which essay follows IB Extended Essay formatting guidelines correctly?</div>
+        <p style="color:#a0a0a0; margin-bottom:16px;">Subject: ${data.essay.subject} | Click an essay to select it, then submit your answer</p>
+    `;
+    
+    data.options.forEach((opt, i) => {
+      html += `
+        <div class="essay-box" id="essay-${i}" onclick="selectEssay(${i})">
+          <div style="font-weight:700; color:#e94560; font-size:16px; margin-bottom:10px;">ESSAY ${String.fromCharCode(65 + i)}</div>
+          ${opt.html}
+        </div>
+      `;
+    });
+    
+    html += `
+        <div class="btn-group">
+          <button class="btn btn-primary" id="submit-btn" onclick="submitCompare()">SUBMIT ANSWER</button>
+          <button class="btn btn-secondary" onclick="skipQuestion()">SKIP QUESTION</button>
+        </div>
+      </div>
+      <div class="feedback-panel" id="feedback-panel"></div>
+    `;
+    
+    area.innerHTML = html;
+  }
+
+  function renderSentenceMode(area) {
+    const data = generateSentenceMode();
+    state.questionData = data;
+    state.totalQuestions++;
+    
+    let html = `
+      <div class="progress-bar"><div class="progress-fill" style="width:${(state.modeQuestionCount.sentence / 5) * 100}%"></div></div>
+      <div class="question-card">
+        <div class="question-header">SENTENCE HUNT: Find the sentence containing the ${data.error.name.toLowerCase()} error</div>
+        <p style="color:#ff6b6b; font-size:13px; margin-bottom:16px;">Error Type: ${data.error.name} | Criterion ${data.error.criterion}</p>
+    `;
+    
+    data.sentences.forEach((s, i) => {
+      html += `
+        <div class="sentence-item" id="sentence-${i}" onclick="selectSentence(${i})">
+          <b>${i + 1}.</b> ${s.text}
+        </div>
+      `;
+    });
+    
+    html += `
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="submitSentence()">SUBMIT</button>
+          <button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button>
+        </div>
+      </div>
+      <div class="feedback-panel" id="feedback-panel"></div>
+    `;
+    
+    area.innerHTML = html;
+  }
+
+  function renderMatchingMode(area) {
+    const data = generateMatchingMode();
+    state.questionData = data;
+    state.totalQuestions++;
+    
+    let html = `
+      <div class="progress-bar"><div class="progress-fill" style="width:${(state.modeQuestionCount.matching / 5) * 100}%"></div></div>
+      <div class="question-card">
+        <div class="question-header">CITATION MATCHING: Match each source to its appropriate IB grade descriptor</div>
+        <div class="matching-grid">
+          <div>
+            <b style="color:#e94560;">SOURCES</b>
+            <div id="sources-list">
+    `;
+    
+    data.pairs.forEach((p, i) => {
+      html += `<div class="match-item" id="source-${i}" onclick="selectSource(${i})" style="font-size:12px;">${p.citation}</div>`;
+    });
+    
+    html += `</div></div><div><b style="color:#00cc66;">GRADE DESCRIPTORS</b><div id="grades-list">`;
+    
+    const shuffledGrades = data.pairs.map(p => ({ grade: p.grade, reason: p.reason })).sort(() => Math.random() - 0.5);
+    state.questionData.shuffledGrades = shuffledGrades;
+    
+    shuffledGrades.forEach((g, i) => {
+      const gradeClass = g.grade.includes('A') ? 'grade-a' : g.grade.includes('B') ? 'grade-b' : g.grade.includes('C') ? 'grade-c' : 'grade-d';
+      html += `<div class="match-item" id="grade-${i}" onclick="selectGrade(${i})" style="font-size:12px;">
+        <span class="grade-badge ${gradeClass}">${g.grade}</span>
+        <br>${g.reason}
+      </div>`;
+    });
+    
+    html += `</div></div></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="submitMatching()">SUBMIT MATCHES</button>
+          <button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button>
+        </div>
+      </div>
+      <div class="feedback-panel" id="feedback-panel"></div>
+    `;
+    
+    area.innerHTML = html;
+  }
+
+  function renderFillBlankMode(area) {
+    const data = generateFillBlankMode();
+    state.questionData = data;
+    state.totalQuestions++;
+    
+    let html = `
+      <div class="progress-bar"><div class="progress-fill" style="width:${(state.modeQuestionCount.fillblank / 5) * 100}%"></div></div>
+      <div class="question-card">
+        <div class="question-header">FILL IN THE BLANK</div>
+        <p style="color:#a0a0a0; margin-bottom:8px;">Error type: ${data.error.name} (Criterion ${data.error.criterion})</p>
+        <div class="essay-box" style="font-size:16px; line-height:2; background:#0a0a1a; cursor:default;">
+          ${data.sentence.replace('______', '<span style="border-bottom:3px solid #e94560; padding:0 10px; color:#e94560; font-weight:700;">______</span>')}
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px;">
+    `;
+    
+    data.options.forEach((opt, i) => {
+      html += `<div class="sentence-item" id="blank-option-${i}" onclick="selectBlankOption(${i})" style="text-align:center;">${opt}</div>`;
+    });
+    
+    html += `
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="submitFillBlank()">SUBMIT</button>
+          <button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button>
+        </div>
+      </div>
+      <div class="feedback-panel" id="feedback-panel"></div>
+    `;
+    
+    area.innerHTML = html;
+  }
+
+  function renderTimelineMode(area) {
+    const data = generateTimelineMode();
+    state.questionData = data;
+    state.totalQuestions++;
+    state.speedTimeLeft = 30;
+    state.timelineAnswers = {};
+    
+    let html = `
+      <div class="progress-bar"><div class="progress-fill" style="width:${(state.modeQuestionCount.timeline / 5) * 100}%"></div></div>
+      <div class="question-card">
+        <div class="question-header">SPEED ROUND: Mark each statement as CORRECT or INCORRECT</div>
+        <div style="text-align:center; font-size:32px; font-weight:700; color:#ff4444; margin:16px 0;" id="speed-timer">30</div>
+    `;
+    
+    data.statements.forEach((s, i) => {
+      html += `
+        <div class="essay-box" id="timeline-${i}" style="cursor:default;">
+          <p style="margin-bottom:10px;">${s.text}</p>
+          <div class="btn-group" style="margin-top:0;">
+            <button class="btn btn-primary" onclick="answerTimeline(${i}, true)" id="timeline-correct-${i}">CORRECT</button>
+            <button class="btn btn-secondary" onclick="answerTimeline(${i}, false)" id="timeline-incorrect-${i}">INCORRECT</button>
+          </div>
+        </div>
+      `;
+    });
+    
+    html += `
+      </div>
+      <div class="feedback-panel" id="feedback-panel"></div>
+    `;
+    
+    area.innerHTML = html;
+    startSpeedTimer();
+  }
+
+  function renderSortingMode(area) {
+    const data = generateSortingMode();
+    state.questionData = data;
+    state.totalQuestions++;
+    
+    let html = `
+      <div class="progress-bar"><div class="progress-fill" style="width:${(state.modeQuestionCount.sorting / 5) * 100}%"></div></div>
+      <div class="question-card">
+        <div class="question-header">RANK ORDER: Arrange the EE writing steps in chronological order</div>
+        <p style="color:#a0a0a0; margin-bottom:16px;">Click items in the correct order (1st through 5th). Click again to deselect.</p>
+    `;
+    
+    data.items.forEach((item, i) => {
+      html += `
+        <div class="essay-box" id="sort-item-${i}" onclick="selectSortItem(${i})" style="display:flex; align-items:center; gap:12px;">
+          <span style="font-weight:700; color:#e94560; font-size:18px; min-width:30px;" id="sort-number-${i}">#?</span>
+          <div>
+            <p>${item.text}</p>
+            <p style="color:#a0a0a0; font-size:11px;">Phase: ${item.phase}</p>
+          </div>
+        </div>
+      `;
+    });
+    
+    html += `
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="submitSorting()">SUBMIT ORDER</button>
+          <button class="btn btn-secondary" onclick="resetSorting()">RESET</button>
+        </div>
+      </div>
+      <div class="feedback-panel" id="feedback-panel"></div>
+    `;
+    
+    area.innerHTML = html;
+  }
+
+  // ============ SELECTION HANDLERS ============
+  function selectEssay(index) {
+    if (state.answered) return;
+    document.querySelectorAll('.essay-box').forEach(el => el.classList.remove('selected'));
+    document.getElementById('essay-' + index).classList.add('selected');
+    state.selectedAnswer = index;
+  }
+
+  function selectSentence(index) {
+    if (state.answered) return;
+    document.querySelectorAll('.sentence-item').forEach(el => el.classList.remove('selected'));
+    document.getElementById('sentence-' + index).classList.add('selected');
+    state.selectedAnswer = index;
+  }
+
+  function selectSource(index) {
+    if (state.answered) return;
+    document.querySelectorAll('#sources-list .match-item').forEach(el => el.classList.remove('selected'));
+    document.getElementById('source-' + index).classList.add('selected');
+    state.selectedSource = index;
+  }
+
+  function selectGrade(index) {
+    if (state.answered || state.selectedSource === null) return;
+    
+    // Remove previous match for this source
+    Object.keys(state.matchPairs).forEach(sourceKey => {
+      if (state.matchPairs[sourceKey] === index) {
+        delete state.matchPairs[sourceKey];
+        document.getElementById('grade-' + index).classList.remove('matched');
+        document.getElementById('source-' + sourceKey).classList.remove('matched');
+      }
+    });
+    
+    state.matchPairs[state.selectedSource] = index;
+    document.getElementById('grade-' + index).classList.add('matched');
+    document.getElementById('source-' + state.selectedSource).classList.add('matched');
+    state.selectedSource = null;
+    document.querySelectorAll('#sources-list .match-item').forEach(el => el.classList.remove('selected'));
+  }
+
+  function selectBlankOption(index) {
+    if (state.answered) return;
+    document.querySelectorAll('[id^="blank-option-"]').forEach(el => el.classList.remove('selected'));
+    document.getElementById('blank-option-' + index).classList.add('selected');
+    state.selectedAnswer = index;
+  }
+
+  function answerTimeline(index, answer) {
+    if (state.answered || state.timelineAnswers[index] !== undefined) return;
+    state.timelineAnswers[index] = answer;
+    document.getElementById('timeline-' + index).style.opacity = '0.6';
+    document.getElementById('timeline-correct-' + index).disabled = true;
+    document.getElementById('timeline-incorrect-' + index).disabled = true;
+    
+    if (Object.keys(state.timelineAnswers).length === state.questionData.statements.length) {
+      setTimeout(() => submitTimeline(), 500);
+    }
+  }
+
+  function selectSortItem(index) {
+    if (state.answered) return;
+    if (state.sortOrder.includes(index)) {
+      state.sortOrder = state.sortOrder.filter(i => i !== index);
+    } else {
+      state.sortOrder.push(index);
+    }
+    updateSortDisplay();
+  }
+
+  function updateSortDisplay() {
+    document.querySelectorAll('[id^="sort-item-"]').forEach(el => {
+      const idx = parseInt(el.id.split('-')[2]);
+      const pos = state.sortOrder.indexOf(idx);
+      const numEl = document.getElementById('sort-number-' + idx);
+      if (pos >= 0) {
+        numEl.textContent = '#' + (pos + 1);
+        numEl.style.color = '#00cc66';
+        el.classList.add('selected');
+      } else {
+        numEl.textContent = '#?';
+        numEl.style.color = '#e94560';
+        el.classList.remove('selected');
+      }
+    });
+  }
+
+  function resetSorting() {
+    state.sortOrder = [];
+    updateSortDisplay();
+  }
+
+  // ============ SUBMISSION HANDLERS ============
+  function submitCompare() {
+    if (state.answered) return;
+    if (state.selectedAnswer === null) {
+      alert('Please select an essay first by clicking on it.');
+      return;
+    }
+    state.answered = true;
+    
+    const correct = state.selectedAnswer === state.questionData.correctIdx;
+    processResult(correct);
+    
+    document.querySelectorAll('.essay-box').forEach(el => {
+      const idx = parseInt(el.id.split('-')[1]);
+      if (idx === state.questionData.correctIdx) el.classList.add('correct');
+      else if (idx === state.selectedAnswer && !correct) el.classList.add('incorrect');
+    });
+    
+    showFeedback(correct, state.questionData.options[state.questionData.correctIdx].errors);
+  }
+
+  function submitSentence() {
+    if (state.answered) return;
+    if (state.selectedAnswer === null) {
+      alert('Please select a sentence first by clicking on it.');
+      return;
+    }
+    state.answered = true;
+    
+    const correct = state.selectedAnswer === state.questionData.errorPos;
+    processResult(correct);
+    
+    document.getElementById('sentence-' + state.questionData.errorPos).classList.add('correct');
+    if (!correct) document.getElementById('sentence-' + state.selectedAnswer).classList.add('incorrect');
+    
+    showFeedback(correct, [state.questionData.error]);
+  }
+
+  function submitMatching() {
+    if (state.answered) return;
+    if (Object.keys(state.matchPairs).length < state.questionData.pairs.length) {
+      alert('Please match all sources to their grade descriptors first.');
+      return;
+    }
+    state.answered = true;
+    
+    let correctCount = 0;
+    state.questionData.pairs.forEach((p, i) => {
+      const matchedGrade = state.questionData.shuffledGrades[state.matchPairs[i]];
+      if (matchedGrade && matchedGrade.grade === p.grade) correctCount++;
+    });
+    
+    const perfect = correctCount === state.questionData.pairs.length;
+    processResult(perfect, perfect ? 5 : 0);
+    showMatchingFeedback(correctCount);
+  }
+
+  function submitFillBlank() {
+    if (state.answered) return;
+    if (state.selectedAnswer === null) {
+      alert('Please select an answer first.');
+      return;
+    }
+    state.answered = true;
+    
+    const selectedOption = state.questionData.options[state.selectedAnswer];
+    const correct = selectedOption === state.questionData.correct;
+    processResult(correct);
+    
+    showFeedback(correct, [state.questionData.error]);
+  }
+
+  function submitTimeline() {
+    if (state.answered) return;
+    state.answered = true;
+    if (state.speedTimer) clearInterval(state.speedTimer);
+    
+    let correctCount = 0;
+    state.questionData.statements.forEach((s, i) => {
+      if (state.timelineAnswers[i] === s.correct) correctCount++;
+    });
+    
+    const perfect = correctCount === state.questionData.statements.length;
+    processResult(perfect, correctCount);
+    
+    document.getElementById('speed-timer').textContent = 'DONE';
+    showFeedback(perfect, [], `Speed Round Complete: ${correctCount}/${state.questionData.statements.length} correct`);
+  }
+
+  function submitSorting() {
+    if (state.answered) return;
+    if (state.sortOrder.length !== state.questionData.items.length) {
+      alert('Please rank all items in order first (click each one).');
+      return;
+    }
+    state.answered = true;
+    
+    let correct = true;
+    state.sortOrder.forEach((itemIdx, pos) => {
+      if (state.questionData.items[itemIdx].order !== pos + 1) correct = false;
+    });
+    
+    processResult(correct, correct ? 5 : 0);
+    showSortingFeedback(correct);
+  }
+
+  function skipQuestion() {
+    if (state.speedTimer) clearInterval(state.speedTimer);
+    state.questionsAnswered++;
+    state.modeQuestionCount[state.currentMode]++;
+    renderCurrentMode();
+  }
+
+  // ============ FEEDBACK SYSTEM ============
+  function processResult(correct, bonus = 0) {
+    state.questionsAnswered++;
+    state.modeQuestionCount[state.currentMode]++;
+    
+    if (correct) {
+      state.correctAnswers++;
+      state.streak++;
+      const points = 10 + (state.streak * 2) + bonus;
+      state.score += points;
+      if (state.streak >= 5) state.level = 3;
+      else if (state.streak >= 3) state.level = 2;
+    } else {
+      state.streak = 0;
+      state.score = Math.max(0, state.score - 5);
+    }
+    
+    updateStats();
+  }
+
+  function showFeedback(correct, errors, customMessage = null) {
+    const panel = document.getElementById('feedback-panel');
+    let html = '<h4 style="color:' + (correct ? '#00cc66' : '#ff4444') + '; margin-bottom:14px; font-size:18px;">' +
+      (correct ? 'CORRECT ASSESSMENT' : 'INCORRECT ASSESSMENT') + '</h4>';
+    
+    if (customMessage) {
+      html += '<p style="margin-bottom:10px;">' + customMessage + '</p>';
+    }
+    
+    if (errors && errors.length > 0) {
+      html += '<div style="margin-top:12px;"><b style="color:#e94560;">Error Analysis:</b></div>';
+      errors.forEach(err => {
+        html += `
+          <div class="error-item">
+            <span class="grade-badge grade-d">${err.name}</span>
+            <span style="color:#a0a0a0; font-size:12px;">Criterion ${err.criterion}</span>
+            <p style="margin-top:8px; font-size:14px; line-height:1.6;">${err.explanation}</p>
+            <p style="color:#00cc66; font-size:13px; margin-top:6px;"><b>Fix:</b> ${err.fix}</p>
+          </div>
+        `;
+      });
+    }
+    
+    html += `
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="renderCurrentMode()">NEXT QUESTION</button>
+      </div>
+    `;
+    
+    panel.innerHTML = html;
+    panel.classList.add('visible');
+    panel.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function showMatchingFeedback(correctCount) {
+    const panel = document.getElementById('feedback-panel');
+    const total = state.questionData.pairs.length;
+    let html = '<h4 style="color:' + (correctCount === total ? '#00cc66' : '#ff9933') + '; margin-bottom:14px; font-size:18px;">' +
+      correctCount + '/' + total + ' CORRECT MATCHES</h4>';
+    
+    state.questionData.pairs.forEach(p => {
+      const gradeClass = p.grade.includes('A') ? 'grade-a' : p.grade.includes('B') ? 'grade-b' : p.grade.includes('C') ? 'grade-c' : 'grade-d';
+      html += `
+        <div class="error-item" style="border-left-color:#00cc66;">
+          <span class="grade-badge ${gradeClass}">${p.grade}</span>
+          <span style="font-size:13px;">${p.citation.substring(0, 60)}...</span>
+          <p style="color:#a0a0a0; font-size:12px; margin-top:4px;">${p.reason}</p>
+        </div>
+      `;
+    });
+    
+    html += '<div class="btn-group"><button class="btn btn-primary" onclick="renderCurrentMode()">NEXT</button></div>';
+    panel.innerHTML = html;
+    panel.classList.add('visible');
+    panel.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function showSortingFeedback(correct) {
+    const panel = document.getElementById('feedback-panel');
+    let html = '<h4 style="color:' + (correct ? '#00cc66' : '#ff4444') + '; margin-bottom:14px; font-size:18px;">' +
+      (correct ? 'CORRECT ORDER' : 'INCORRECT ORDER') + '</h4>';
+    
+    html += '<b style="color:#e94560;">Correct Sequence:</b><br>';
+    state.questionData.items.sort((a, b) => a.order - b.order).forEach(item => {
+      html += '<div class="error-item" style="border-left-color:#00cc66;"><b>#' + item.order + ':</b> ' + item.text + ' <span style="color:#a0a0a0; font-size:11px;">(' + item.phase + ')</span></div>';
+    });
+    
+    html += '<div class="btn-group"><button class="btn btn-primary" onclick="renderCurrentMode()">NEXT</button></div>';
+    panel.innerHTML = html;
+    panel.classList.add('visible');
+    panel.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ============ SPEED TIMER ============
+  function startSpeedTimer() {
+    state.speedTimeLeft = 30;
+    state.speedTimer = setInterval(() => {
+      state.speedTimeLeft--;
+      const timerEl = document.getElementById('speed-timer');
+      if (timerEl) {
+        timerEl.textContent = state.speedTimeLeft;
+        if (state.speedTimeLeft <= 10) timerEl.style.color = '#ff0000';
+      }
+      if (state.speedTimeLeft <= 0) {
+        clearInterval(state.speedTimer);
+        if (!state.answered) submitTimeline();
+      }
+    }, 1000);
+  }
+
+  // ============ STATS UPDATE ============
+  function updateStats() {
+    document.getElementById('score-display').textContent = state.score;
+    document.getElementById('streak-display').textContent = state.streak;
+    document.getElementById('question-display').textContent = state.questionsAnswered + '/' + state.totalQuestions;
+    document.getElementById('level-display').textContent = state.level;
+    document.getElementById('accuracy-display').textContent = 
+      state.questionsAnswered > 0 ? Math.round((state.correctAnswers / state.questionsAnswered) * 100) + '%' : '0%';
+    document.getElementById('time-display').textContent = formatTime(state.timeElapsed);
+  }
+
+  function formatTime(seconds) {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  // ============ MODE SWITCHING ============
+  document.getElementById('mode-nav').addEventListener('click', function(e) {
+    const btn = e.target.closest('.mode-btn');
+    if (!btn) return;
+    
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    state.currentMode = btn.dataset.mode;
+    if (state.speedTimer) {
+      clearInterval(state.speedTimer);
+      state.speedTimer = null;
+    }
+    renderCurrentMode();
+  });
+
+  // ============ GLOBAL TIMER ============
+  setInterval(() => {
+    state.timeElapsed++;
+    document.getElementById('time-display').textContent = formatTime(state.timeElapsed);
+  }, 1000);
+
+  // ============ KEYBOARD SHORTCUTS ============
+  document.addEventListener('keydown', function(e) {
+    if (state.answered) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        renderCurrentMode();
+      }
+      return;
+    }
+    
+    const num = parseInt(e.key);
+    if (num >= 1 && num <= 4) {
+      e.preventDefault();
+      const index = num - 1;
+      switch(state.currentMode) {
+        case 'compare': selectEssay(index); break;
+        case 'sentence': selectSentence(index); break;
+        case 'fillblank': selectBlankOption(index); break;
+      }
+    }
+    
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      switch(state.currentMode) {
+        case 'compare': submitCompare(); break;
+        case 'sentence': submitSentence(); break;
+        case 'matching': submitMatching(); break;
+        case 'fillblank': submitFillBlank(); break;
+        case 'sorting': submitSorting(); break;
+      }
+    }
+  });
+
+  // ============ INIT ============
+  renderCurrentMode();
+  updateStats();
+</script>
+
+</body>
+</html>
