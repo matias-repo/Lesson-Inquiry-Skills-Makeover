@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>IB EE Examiner Training Suite v4.0</title>
+  <title>IB EE Examiner Training Suite v4.3 · Compact</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -11,64 +11,66 @@
       background: #1a1a2e;
       font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
       color: #e0e0e0;
-      padding: 12px;
+      padding: 8px;
       min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
     }
 
     .main-container {
-      max-width: 1000px;
-      margin: 0 auto;
+      max-width: 950px;
+      width: 100%;
       background: #16213e;
       border: 2px solid #0f3460;
-      border-radius: 16px;
-      box-shadow: 0 10px 50px rgba(0,0,0,0.7);
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
       overflow: hidden;
     }
 
     .header {
       background: linear-gradient(180deg, #0f3460, #16213e);
-      padding: 24px;
+      padding: 14px 18px;
       text-align: center;
-      border-bottom: 3px solid #e94560;
+      border-bottom: 2px solid #e94560;
     }
 
     .header h1 {
-      font-size: 30px;
+      font-size: 24px;
       font-weight: 800;
       color: #e94560;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .header .subtitle {
-      font-size: 15px;
+      font-size: 13px;
       color: #a0a0a0;
-      margin-top: 6px;
-      letter-spacing: 1px;
+      margin-top: 2px;
     }
 
     .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-      gap: 10px;
-      padding: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 14px;
       background: #0f3460;
-      border-bottom: 2px solid #1a1a4e;
+      border-bottom: 1px solid #1a1a4e;
+      justify-content: center;
     }
 
     .stat-item {
       background: #16213e;
-      padding: 12px 6px;
-      border-radius: 8px;
+      padding: 8px 14px;
+      border-radius: 6px;
       border: 1px solid #1a1a4e;
       text-align: center;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
     .stat-value {
-      font-size: 26px;
+      font-size: 22px;
       color: #e94560;
       font-weight: 800;
       margin-top: 2px;
@@ -77,101 +79,98 @@
     .mode-nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      padding: 14px;
+      gap: 5px;
+      padding: 10px;
       background: #0a0a1a;
-      border-bottom: 2px solid #1a1a4e;
+      border-bottom: 1px solid #1a1a4e;
       justify-content: center;
     }
 
     .mode-btn {
-      padding: 12px 18px;
+      padding: 8px 14px;
       background: #16213e;
       border: 1px solid #1a1a4e;
       color: #c0c0c0;
       cursor: pointer;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border-radius: 8px;
-      transition: all 0.25s;
-      position: relative;
+      letter-spacing: 0.5px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .mode-btn:hover {
       background: #0f3460;
       border-color: #e94560;
       color: #e94560;
-      transform: translateY(-1px);
     }
 
     .mode-btn.active {
       background: #e94560;
       color: white;
       border-color: #c23152;
-      box-shadow: 0 0 25px rgba(233,69,96,0.5);
+      box-shadow: 0 0 15px rgba(233,69,96,0.4);
     }
 
     .mode-btn .mode-timer {
-      display: block;
-      font-size: 11px;
+      font-size: 10px;
       color: #ffaa00;
-      margin-top: 4px;
+      margin-top: 3px;
       font-weight: 400;
     }
 
     .content-area {
-      padding: 24px;
-      min-height: 550px;
+      padding: 16px;
       background: #0d1b2e;
+      min-height: 420px;
     }
 
     .progress-bar {
-      height: 10px;
+      height: 7px;
       background: #0a0a1a;
-      border-radius: 6px;
+      border-radius: 4px;
       overflow: hidden;
-      margin-bottom: 24px;
-      box-shadow: inset 0 1px 4px rgba(0,0,0,0.5);
+      margin-bottom: 16px;
     }
 
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, #e94560, #ff6b6b);
       transition: width 0.4s ease;
-      border-radius: 6px;
     }
 
     .question-card {
       background: #1a1a2e;
       border: 1px solid #0f3460;
-      border-radius: 14px;
-      padding: 28px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
 
     .question-header {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 800;
       color: #e94560;
-      margin-bottom: 18px;
-      padding-bottom: 12px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
       border-bottom: 2px solid #0f3460;
-      letter-spacing: 0.5px;
     }
 
     .essay-box {
       background: #0a0a1a;
       border: 2px solid #1a1a4e;
-      border-radius: 10px;
-      padding: 22px;
-      margin: 12px 0;
+      border-radius: 8px;
+      padding: 14px;
+      margin: 8px 0;
       cursor: pointer;
       transition: all 0.2s;
-      font-size: 14px;
-      line-height: 1.8;
+      font-size: 13px;
+      line-height: 1.6;
       color: #e0e0e0;
     }
 
@@ -184,7 +183,7 @@
     .essay-box.selected {
       border-color: #e94560;
       background: #1a0a1a;
-      box-shadow: 0 0 20px rgba(233,69,96,0.4);
+      box-shadow: 0 0 15px rgba(233,69,96,0.3);
     }
 
     .essay-box.correct {
@@ -200,34 +199,35 @@
     .essay-label {
       font-weight: 800;
       color: #e94560;
-      font-size: 17px;
-      margin-bottom: 10px;
+      font-size: 15px;
+      margin-bottom: 6px;
     }
 
     .essay-section {
-      margin-bottom: 14px;
+      margin-bottom: 8px;
     }
 
     .essay-section h4 {
       color: #ff6b6b;
-      font-size: 15px;
-      margin-bottom: 5px;
+      font-size: 13px;
+      margin-bottom: 2px;
     }
 
     .essay-section p {
-      margin-left: 10px;
+      margin-left: 8px;
       color: #c0c0c0;
+      font-size: 12px;
     }
 
     .btn {
-      padding: 12px 24px;
+      padding: 8px 16px;
       border: none;
-      border-radius: 8px;
-      font-size: 14px;
+      border-radius: 6px;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       transition: all 0.2s;
     }
 
@@ -238,7 +238,6 @@
 
     .btn-primary:hover {
       background: #c23152;
-      transform: translateY(-2px);
     }
 
     .btn-secondary {
@@ -253,16 +252,16 @@
     .btn-group {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 20px;
+      gap: 10px;
+      margin-top: 14px;
     }
 
     .feedback-panel {
       background: #1a1a2e;
       border: 1px solid #0f3460;
-      border-radius: 12px;
-      padding: 24px;
-      margin-top: 20px;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 14px;
       display: none;
       animation: fadeIn 0.3s;
     }
@@ -271,23 +270,24 @@
       display: block;
     }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
     .error-item {
       background: #0a0a1a;
-      border-left: 5px solid #e94560;
-      padding: 14px;
-      margin: 10px 0;
-      border-radius: 6px;
+      border-left: 4px solid #e94560;
+      padding: 10px;
+      margin: 6px 0;
+      border-radius: 4px;
+      font-size: 12px;
     }
 
     .grade-badge {
       display: inline-block;
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 10px;
       font-weight: 800;
-      margin-right: 8px;
+      margin-right: 6px;
     }
 
     .grade-a { background: #00cc66; color: white; }
@@ -298,12 +298,12 @@
     .sentence-item {
       background: #0a0a1a;
       border: 2px solid #1a1a4e;
-      border-radius: 8px;
-      padding: 16px;
-      margin: 10px 0;
+      border-radius: 6px;
+      padding: 12px;
+      margin: 6px 0;
       cursor: pointer;
-      font-size: 15px;
-      line-height: 1.6;
+      font-size: 13px;
+      line-height: 1.5;
       transition: all 0.2s;
     }
 
@@ -320,17 +320,17 @@
     .matching-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 14px;
     }
 
     .match-item {
       background: #0a0a1a;
       border: 2px solid #1a1a4e;
-      border-radius: 8px;
-      padding: 14px;
-      margin: 8px 0;
+      border-radius: 6px;
+      padding: 10px;
+      margin: 6px 0;
       cursor: pointer;
-      font-size: 13px;
+      font-size: 12px;
       transition: all 0.2s;
     }
 
@@ -343,36 +343,126 @@
       background: #0a1a0a;
     }
 
+    /* Leaderboard Styles */
     .leaderboard {
       background: #0f1629;
       border: 2px solid #e94560;
-      border-radius: 14px;
-      padding: 24px;
-      margin: 24px 0;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 16px 0;
       text-align: center;
+      animation: fadeIn 0.5s;
     }
 
     .leaderboard h2 {
       color: #e94560;
-      margin-bottom: 16px;
-      font-size: 26px;
+      margin-bottom: 4px;
+      font-size: 22px;
+    }
+
+    .leaderboard .subtitle {
+      color: #a0a0a0;
+      margin-bottom: 14px;
+      font-size: 13px;
     }
 
     .leaderboard-entry {
       display: flex;
       justify-content: space-between;
-      padding: 10px 14px;
+      align-items: center;
+      padding: 8px 12px;
       background: #16213e;
-      margin: 6px 0;
+      margin: 5px 0;
       border-radius: 8px;
       font-weight: 600;
+      font-size: 13px;
+      border: 1px solid #1a1a4e;
+      flex-wrap: wrap;
+      gap: 6px;
     }
 
-    @media (max-width: 650px) {
-      .header h1 { font-size: 22px; }
-      .essay-box { font-size: 13px; padding: 14px; }
+    .leaderboard-entry.highlight {
+      border-color: #e94560;
+      background: #1a1a3e;
+      box-shadow: 0 0 12px rgba(233,69,96,0.3);
+    }
+
+    .leaderboard-rank {
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffaa00;
+      width: 30px;
+    }
+
+    .leaderboard-initials {
+      background: #e94560;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      font-size: 12px;
+    }
+
+    .leaderboard-score {
+      color: #00cc66;
+      font-size: 16px;
+    }
+
+    .input-group {
+      margin: 16px 0;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .initials-input {
+      background: #0a0a1a;
+      border: 2px solid #e94560;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      width: 90px;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .initials-input:focus {
+      outline: none;
+      border-color: #ff6b6b;
+      box-shadow: 0 0 10px rgba(233,69,96,0.4);
+    }
+
+    .clear-scores-btn {
+      background: transparent;
+      border: 1px solid #ff4444;
+      color: #ff4444;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 11px;
+      margin-top: 12px;
+    }
+
+    .clear-scores-btn:hover {
+      background: #ff4444;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      .header h1 { font-size: 18px; }
+      .essay-box { font-size: 11px; padding: 10px; }
       .matching-grid { grid-template-columns: 1fr; }
-      .mode-btn { padding: 10px 12px; font-size: 11px; }
+      .mode-btn { padding: 6px 10px; font-size: 10px; }
+      .stats-bar { gap: 4px; }
+      .stat-item { padding: 6px 10px; }
+      .stat-value { font-size: 18px; }
+      .btn { padding: 6px 12px; font-size: 11px; }
     }
   </style>
 </head>
@@ -381,40 +471,38 @@
 <div class="main-container">
   <div class="header">
     <h1>IB EE Examiner Training Suite</h1>
-    <div class="subtitle">Professional Assessment Tool v4.0 · Enhanced Edition</div>
+    <div class="subtitle">Professional Assessment Tool v4.3 · Compact</div>
   </div>
 
   <div class="stats-bar">
-    <div class="stat-item"><div>LEVEL</div><div class="stat-value" id="level-display">1</div></div>
     <div class="stat-item"><div>SCORE</div><div class="stat-value" id="score-display">0</div></div>
     <div class="stat-item"><div>STREAK</div><div class="stat-value" id="streak-display">0</div></div>
     <div class="stat-item"><div>ACCURACY</div><div class="stat-value" id="accuracy-display">0%</div></div>
     <div class="stat-item"><div>QUESTIONS</div><div class="stat-value" id="question-display">0/25</div></div>
-    <div class="stat-item"><div>GLOBAL TIME</div><div class="stat-value" id="time-display">0:00</div></div>
+    <div class="stat-item"><div>TIME</div><div class="stat-value" id="time-display">0:00</div></div>
   </div>
 
   <div class="mode-nav" id="mode-nav">
-    <button class="mode-btn active" data-mode="compare">📝 Essay Compare <span class="mode-timer" id="timer-compare">0:00</span></button>
-    <button class="mode-btn" data-mode="sentence">🔍 Sentence Hunt <span class="mode-timer" id="timer-sentence">0:00</span></button>
-    <button class="mode-btn" data-mode="matching">📎 Cite Match <span class="mode-timer" id="timer-matching">0:00</span></button>
-    <button class="mode-btn" data-mode="fillblank">✍️ Fill Blank <span class="mode-timer" id="timer-fillblank">0:00</span></button>
-    <button class="mode-btn" data-mode="timeline">⏳ Speed Round <span class="mode-timer" id="timer-timeline">0:00</span></button>
-    <button class="mode-btn" data-mode="sorting">🔢 Rank Order <span class="mode-timer" id="timer-sorting">0:00</span></button>
+    <button class="mode-btn active" data-mode="compare">📝 Compare <span class="mode-timer" id="timer-compare">0:00</span></button>
+    <button class="mode-btn" data-mode="sentence">🔍 Hunt <span class="mode-timer" id="timer-sentence">0:00</span></button>
+    <button class="mode-btn" data-mode="matching">📎 Match <span class="mode-timer" id="timer-matching">0:00</span></button>
+    <button class="mode-btn" data-mode="fillblank">✍️ Blank <span class="mode-timer" id="timer-fillblank">0:00</span></button>
+    <button class="mode-btn" data-mode="timeline">⏳ Speed <span class="mode-timer" id="timer-timeline">0:00</span></button>
+    <button class="mode-btn" data-mode="sorting">🔢 Order <span class="mode-timer" id="timer-sorting">0:00</span></button>
   </div>
 
   <div class="content-area" id="content-area"></div>
-  <div id="leaderboard-container" style="padding: 0 24px 24px;"></div>
+  <div id="leaderboard-container" style="padding: 0 16px 16px;"></div>
 </div>
 
 <script>
-  // ============ GAME STATE v4.0 ============
+  // ============ GAME STATE v4.3 (Compact, No Level Counter) ============
   const state = {
     score: 0,
     questionsAnswered: 0,
-    totalQuestions: 25,            // Fixed total questions across all modes
+    totalQuestions: 25,
     streak: 0,
     correctAnswers: 0,
-    level: 1,
     globalTime: 0,
     currentMode: 'compare',
     modeTimers: { compare: 0, sentence: 0, matching: 0, fillblank: 0, timeline: 0, sorting: 0 },
@@ -428,76 +516,97 @@
     selectedSource: null,
     sortOrder: [],
     timelineAnswers: {},
-    leaderboard: [],              // Store recent results
-    modeIntervalId: null
+    modeIntervalId: null,
+    playerInitials: null,
+    gameEnded: false
   };
 
-  // ============ EXPANDED ESSAY DATABASE (MORE VARIETY) ============
+  // ============ LOCAL STORAGE FOR PERSISTENT LEADERBOARD ============
+  const STORAGE_KEY = 'ib_ee_trainer_leaderboard_v43';
+
+  function loadPersistentLeaderboard() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function savePersistentLeaderboard(entries) {
+    try {
+      const sorted = entries.sort((a, b) => b.score - a.score).slice(0, 10);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(sorted));
+      return sorted;
+    } catch (e) {
+      return entries;
+    }
+  }
+
+  // ============ EXPANDED ESSAY DATABASE ============
   const essayDB = [
     {
       id: 'eng1', subject: 'English A: Literature',
       rq: 'To what extent does Virginia Woolf\'s use of free indirect discourse in Mrs Dalloway influence the reader\'s perception of time and consciousness?',
       candidate: '004512-0032', session: 'May 2024',
-      intro: 'This extended essay examines the narrative technique of free indirect discourse in Virginia Woolf\'s modernist novel Mrs Dalloway (1925). The investigation focuses on how Woolf\'s manipulation of narrative perspective fundamentally alters the reader\'s experience of temporality and psychological interiority.',
-      analysis: 'Through close reading of key passages—including Clarissa Dalloway\'s morning walk through London and Septimus Warren Smith\'s fragmented perceptions in Regent\'s Park—this analysis demonstrates how Woolf\'s seamless movement between third-person narration and characters\' internal thoughts creates what Paul Ricoeur terms "narrative time."',
-      conclusion: 'The investigation concludes that Woolf\'s innovative use of free indirect discourse is central to her modernist project of representing consciousness, inviting readers to inhabit multiple temporal planes simultaneously.',
-      works: ['Woolf, Virginia. Mrs Dalloway. Hogarth Press, 1925.', 'Genette, Gérard. Narrative Discourse. Cornell UP, 1980.', 'Ricoeur, Paul. Time and Narrative, Vol 2. U of Chicago Press, 1985.']
+      intro: 'This extended essay examines the narrative technique of free indirect discourse in Virginia Woolf\'s modernist novel Mrs Dalloway (1925).',
+      analysis: 'Through close reading of key passages, this analysis demonstrates how Woolf\'s seamless movement between narration and internal thoughts creates "narrative time."',
+      conclusion: 'Woolf\'s innovative use of free indirect discourse is central to her modernist project, inviting readers to inhabit multiple temporal planes simultaneously.',
+      works: ['Woolf, Virginia. Mrs Dalloway. Hogarth Press, 1925.', 'Genette, Gérard. Narrative Discourse. Cornell UP, 1980.']
     },
     {
       id: 'geo1', subject: 'Geography',
-      rq: 'To what extent have international climate agreements been effective in reducing carbon emissions among signatory nations since 1997?',
+      rq: 'To what extent have international climate agreements been effective in reducing carbon emissions since 1997?',
       candidate: '007821-0045', session: 'November 2023',
-      intro: 'This geography extended essay evaluates the measurable impact of the Kyoto Protocol (1997) and the Paris Agreement (2015) on national carbon emission trajectories.',
-      analysis: 'Quantitative data from the World Bank and IPCC (2022) reveals a 23% reduction in EU emissions between 1990-2020, while India\'s emissions increased by 14%. Legally binding targets proved more effective than voluntary NDCs.',
-      conclusion: 'The evidence demonstrates that international agreements\' effectiveness is contingent upon binding enforcement mechanisms and equitable burden-sharing provisions.',
-      works: ['IPCC. Climate Change 2022: Mitigation of Climate Change. Cambridge UP, 2022.', 'United Nations. Paris Agreement. Treaty Series, vol. 3156, 2015.', 'World Bank. Carbon Pricing 2023. World Bank, 2023.']
+      intro: 'This geography extended essay evaluates the measurable impact of the Kyoto Protocol and the Paris Agreement on national carbon emission trajectories.',
+      analysis: 'Quantitative data reveals a 23% reduction in EU emissions between 1990-2020, while India\'s emissions increased by 14%.',
+      conclusion: 'International agreements\' effectiveness is contingent upon binding enforcement mechanisms and equitable burden-sharing.',
+      works: ['IPCC. Climate Change 2022. Cambridge UP, 2022.', 'United Nations. Paris Agreement. Treaty Series, 2015.']
     },
     {
       id: 'phil1', subject: 'Philosophy',
-      rq: 'To what extent can John Searle\'s Chinese Room argument be considered a decisive refutation of strong artificial intelligence?',
+      rq: 'To what extent can Searle\'s Chinese Room argument refute strong artificial intelligence?',
       candidate: '003409-0018', session: 'May 2025',
-      intro: 'This philosophy extended essay critically evaluates the logical force of Searle\'s Chinese Room thought experiment against strong AI claims.',
-      analysis: 'Searle\'s distinction between syntactic manipulation and semantic understanding challenges functionalism, but Dennett\'s systems reply suggests the argument relies on intuitive yet questionable assumptions about understanding.',
-      conclusion: 'While the Chinese Room highlights the difference between simulation and genuine understanding, it does not constitute a decisive refutation, particularly given advances in neural networks.',
-      works: ['Searle, John. "Minds, Brains, and Programs." Behavioral and Brain Sciences, vol.3, 1980.', 'Dennett, Daniel. Consciousness Explained. Little Brown, 1991.', 'Bostrom, Nick. Superintelligence. Oxford UP, 2014.']
+      intro: 'This philosophy extended essay critically evaluates the logical force of Searle\'s Chinese Room thought experiment.',
+      analysis: 'Searle\'s distinction between syntax and semantics challenges functionalism, but Dennett\'s systems reply raises questions.',
+      conclusion: 'The Chinese Room highlights the difference between simulation and understanding but is not a decisive refutation.',
+      works: ['Searle, John. "Minds, Brains, and Programs." BBS, vol.3, 1980.', 'Dennett, Daniel. Consciousness Explained. Little Brown, 1991.']
     },
     {
       id: 'hist1', subject: 'History',
-      rq: 'To what extent did the Treaty of Versailles contribute to the rise of extremist political movements in Germany between 1919 and 1933?',
+      rq: 'To what extent did the Treaty of Versailles contribute to the rise of extremism in Germany (1919-1933)?',
       candidate: '009234-0056', session: 'November 2024',
-      intro: 'This history extended essay investigates the causal relationship between the punitive terms of the Treaty of Versailles and the subsequent radicalization of German politics.',
-      analysis: 'Analysis of economic data and political speeches reveals that war reparations and territorial losses created economic instability exploited by extremist parties. However, the essay also considers other contributing factors such as the Weimar Constitution\'s weaknesses.',
-      conclusion: 'The Treaty of Versailles was a significant but not exclusive factor in the rise of extremism; its psychological impact on national identity was as crucial as its economic consequences.',
-      works: ['Keynes, John M. The Economic Consequences of the Peace. Macmillan, 1919.', 'Evans, Richard. The Coming of the Third Reich. Penguin, 2004.', 'Marks, Sally. The Illusion of Peace. Palgrave, 2003.']
+      intro: 'This history extended essay investigates the causal relationship between the Treaty of Versailles and the radicalization of German politics.',
+      analysis: 'War reparations and territorial losses created instability exploited by extremist parties, though other factors also contributed.',
+      conclusion: 'The Treaty was a significant but not exclusive factor; its psychological impact on national identity was crucial.',
+      works: ['Keynes, John M. The Economic Consequences of the Peace. Macmillan, 1919.', 'Evans, Richard. The Coming of the Third Reich. Penguin, 2004.']
     },
     {
       id: 'bio1', subject: 'Biology',
-      rq: 'To what extent does the concentration of microplastics in freshwater ecosystems correlate with the decline of Daphnia magna populations?',
+      rq: 'To what extent does microplastic concentration correlate with Daphnia magna population decline?',
       candidate: '001256-0078', session: 'May 2026',
-      intro: 'This biology extended essay examines the ecotoxicological effects of microplastic pollution on a keystone freshwater species through controlled laboratory experiments.',
-      analysis: 'Experimental data shows a statistically significant negative correlation (r = -0.82) between microplastic concentration and Daphnia magna filtration rates. Concentrations above 50 particles/mL led to 40% mortality within 72 hours.',
-      conclusion: 'Microplastics pose a demonstrable threat to freshwater filter feeders, with implications for entire aquatic food webs, though field conditions may moderate laboratory findings.',
-      works: ['Rochman, C. "Microplastics in Freshwater." Environmental Science, vol.45, 2019.', 'OECD. Guidelines for Testing of Chemicals. OECD, 2020.', 'WHO. Microplastics in Drinking Water. WHO, 2022.']
+      intro: 'This biology extended essay examines the ecotoxicological effects of microplastic pollution on a keystone freshwater species.',
+      analysis: 'Experimental data shows a significant negative correlation (r = -0.82) between microplastic concentration and filtration rates.',
+      conclusion: 'Microplastics pose a demonstrable threat to freshwater filter feeders, with implications for aquatic food webs.',
+      works: ['Rochman, C. "Microplastics in Freshwater." EnvSci, vol.45, 2019.', 'WHO. Microplastics in Drinking Water. WHO, 2022.']
     }
   ];
 
-  // ============ ERROR DEFINITIONS (EXPANDED) ============
+  // ============ ERROR DEFINITIONS ============
   const errorDB = {
-    rq_broad: { name: 'Overly Broad Research Question', criterion: 'A', grade: 'D', explanation: 'Lacks specificity for a 4000-word investigation. Must be sharply focused.', fix: 'Add specific context and analytical framing.' },
-    informal_lang: { name: 'Informal Academic Register', criterion: 'B', grade: 'D', explanation: 'Uses colloquial language inappropriate for academic writing.', fix: 'Replace informal phrases with academic equivalents.' },
-    citation_format: { name: 'Inconsistent Citation Formatting', criterion: 'D', grade: 'C', explanation: 'Citations mix different styles or contain inconsistencies.', fix: 'Choose one citation style and apply consistently.' },
-    descriptive_conclusion: { name: 'Descriptive Conclusion', criterion: 'C', grade: 'D', explanation: 'Conclusion summarizes rather than synthesizing findings.', fix: 'Directly address the research question with analytical evaluation.' },
-    missing_pages: { name: 'Missing Page Numbers', criterion: 'D', grade: 'C', explanation: 'Direct quotations lack page numbers, weakening credibility.', fix: 'Include page numbers for all quotations.' },
-    weak_topic: { name: 'Weak Topic Sentences', criterion: 'C', grade: 'D', explanation: 'Paragraphs begin with facts instead of analytical claims.', fix: 'Start paragraphs with arguments, then support with evidence.' },
-    vague_analysis: { name: 'Vague Analytical Language', criterion: 'C', grade: 'D', explanation: 'Uses imprecise terms like "good" or "important" without defining criteria.', fix: 'Use subject-specific terminology and quantify where possible.' }
+    rq_broad: { name: 'Overly Broad RQ', criterion: 'A', grade: 'D', explanation: 'Lacks specificity for a 4000-word investigation.', fix: 'Add specific context and analytical framing.' },
+    informal_lang: { name: 'Informal Register', criterion: 'B', grade: 'D', explanation: 'Uses colloquial language inappropriate for academic writing.', fix: 'Replace informal phrases with academic equivalents.' },
+    citation_format: { name: 'Inconsistent Citations', criterion: 'D', grade: 'C', explanation: 'Citations mix different styles.', fix: 'Choose one style and apply consistently.' },
+    descriptive_conclusion: { name: 'Descriptive Conclusion', criterion: 'C', grade: 'D', explanation: 'Conclusion summarizes rather than synthesizing.', fix: 'Directly address the research question analytically.' },
+    missing_pages: { name: 'Missing Page Numbers', criterion: 'D', grade: 'C', explanation: 'Direct quotations lack page numbers.', fix: 'Include page numbers for all quotations.' },
+    weak_topic: { name: 'Weak Topic Sentences', criterion: 'C', grade: 'D', explanation: 'Paragraphs begin with facts instead of claims.', fix: 'Start paragraphs with arguments, then evidence.' }
   };
 
-  // ============ BUILD PERFECT ESSAY HTML ============
+  // ============ BUILD PERFECT ESSAY HTML (COMPACT) ============
   function buildPerfectEssay(essay) {
     return `
-      <div class="essay-label">Title Page</div>
-      <div class="essay-section"><p><b>RQ:</b> ${essay.rq}</p><p><b>Subject:</b> ${essay.subject}</p><p><b>Candidate:</b> ${essay.candidate}</p></div>
-      <hr style="border:1px solid #1a1a4e; margin:10px 0;">
+      <div class="essay-label">${essay.subject} · ${essay.session}</div>
+      <div class="essay-section"><b>RQ:</b> ${essay.rq}</div>
       <div class="essay-section"><h4>Introduction</h4><p>${essay.intro}</p></div>
       <div class="essay-section"><h4>Analysis</h4><p>${essay.analysis}</p></div>
       <div class="essay-section"><h4>Conclusion</h4><p>${essay.conclusion}</p></div>
@@ -508,27 +617,25 @@
   function applyError(html, essay, errorKey) {
     switch(errorKey) {
       case 'rq_broad': return html.replace(essay.rq, 'How does literature affect people?');
-      case 'informal_lang': return html.replace('examines', 'looks at').replace('fundamentally alters', 'really changes').replace('concludes', 'says');
-      case 'citation_format': return html.replace('Hogarth Press, 1925.', 'Hogarth Press, 1925 (no italics).').replace('Cambridge UP, 2022.', 'cambridge university press 2022.');
+      case 'informal_lang': return html.replace('examines', 'looks at').replace('demonstrates', 'shows');
+      case 'citation_format': return html.replace('Hogarth Press, 1925.', 'Hogarth Press, 1925 (no italics).');
       case 'descriptive_conclusion': return html.replace(essay.conclusion, 'In conclusion, this essay discussed many aspects. More research is needed.');
-      case 'missing_pages': return html.replace('vol. 3, no. 3, 1980, pp. 417-457.', 'vol. 3, no. 3, 1980.');
-      case 'weak_topic': return html.replace(essay.analysis.substring(0, 80), 'This topic is very interesting and has been studied by many people.');
-      case 'vague_analysis': return html.replace('statistically significant', 'pretty big').replace('demonstrates', 'shows');
+      case 'missing_pages': return html.replace('BBS, vol.3, 1980.', 'BBS, vol.3, 1980.');
+      case 'weak_topic': return html.replace(essay.analysis.substring(0, 60), 'This topic is very interesting and has been studied by many people.');
       default: return html;
     }
   }
 
-  // ============ MODE GENERATORS (WITH MORE VARIATION) ============
+  // ============ MODE GENERATORS ============
   function generateCompareMode() {
     const essay = essayDB[Math.floor(Math.random() * essayDB.length)];
-    const numOptions = 3;
-    const correctIdx = Math.floor(Math.random() * numOptions);
+    const correctIdx = Math.floor(Math.random() * 3);
     let options = [];
-    for (let i = 0; i < numOptions; i++) {
+    for (let i = 0; i < 3; i++) {
       if (i === correctIdx) {
         options.push({ html: buildPerfectEssay(essay), correct: true, errors: [] });
       } else {
-        const errorKeys = Object.keys(errorDB).sort(() => Math.random() - 0.5).slice(0, 2 + Math.floor(Math.random() * 3));
+        const errorKeys = Object.keys(errorDB).sort(() => Math.random() - 0.5).slice(0, 2 + Math.floor(Math.random() * 2));
         let html = buildPerfectEssay(essay);
         const errors = [];
         errorKeys.forEach(key => { html = applyError(html, essay, key); errors.push(errorDB[key]); });
@@ -542,23 +649,20 @@
     const errorKey = Object.keys(errorDB)[Math.floor(Math.random() * Object.keys(errorDB).length)];
     const error = errorDB[errorKey];
     const errorSentences = {
-      rq_broad: 'Research Question: How does literature affect how people think and feel?',
+      rq_broad: 'RQ: How does literature affect how people think and feel?',
       informal_lang: "This essay will look at how the author's technique really changes things.",
       citation_format: 'Works Cited: Woolf, V. (1925) Mrs Dalloway. Hogarth Press. Genette, G. Narrative Discourse. Cornell UP, 1980.',
       descriptive_conclusion: 'In conclusion, this essay discussed many aspects and considered various viewpoints.',
       missing_pages: 'As Woolf demonstrates, "she had the perpetual sense of being out at sea" (Woolf, 1925).',
-      weak_topic: 'Virginia Woolf was born in 1882 and wrote many famous novels.',
-      vague_analysis: 'The results were really good and showed a big change in the data.'
+      weak_topic: 'Virginia Woolf was born in 1882 and wrote many famous novels.'
     };
     const correctSentences = [
-      'The analysis reveals a fluid temporality that mirrors human thought processes (Ricoeur, 1985, p. 102).',
-      'Quantitative data reveals a 23% reduction in EU emissions between 1990 and 2020 (IPCC, 2022).',
-      'Genette\'s framework distinguishes between narrative voice and focalization (Genette, 1980, pp. 185-189).',
-      'Searle\'s distinction challenges functionalist theories of artificial intelligence (Searle, 1980, p. 422).',
+      'The analysis reveals a fluid temporality mirroring human thought (Ricoeur, 1985, p. 102).',
+      'Data reveals a 23% reduction in EU emissions between 1990 and 2020 (IPCC, 2022).',
+      'Genette distinguishes between narrative voice and focalization (Genette, 1980, pp. 185-189).',
       'Legally binding targets were substantially more effective than voluntary contributions.',
-      'Woolf\'s free indirect discourse restructures the reader\'s temporal experience of the narrative.',
-      'The Treaty\'s psychological impact on national identity was as crucial as its economic consequences.',
-      'Microplastic concentration negatively correlated with filtration rates (r = -0.82, p < 0.01).'
+      'The Treaty\'s psychological impact on national identity was as crucial as economic consequences.',
+      'Microplastic concentration negatively correlated with filtration rates (r = -0.82).'
     ];
     const sentences = [];
     const errorPos = Math.floor(Math.random() * 4);
@@ -575,42 +679,37 @@
       { citation: 'Woolf, V. Mrs Dalloway. Hogarth Press, 1925.', grade: 'A (Excellent)', reason: 'Complete MLA format.' },
       { citation: 'Woolf, V. mrs dalloway. hogarth press, 1925', grade: 'D (Poor)', reason: 'Capitalization errors.' },
       { citation: 'Genette, Gérard. Narrative Discourse. Cornell UP, 1980.', grade: 'B (Good)', reason: 'Proper MLA, minor punctuation.' },
-      { citation: 'ipcc report climate change 2022', grade: 'D (Poor)', reason: 'No proper formatting.' },
-      { citation: 'Keynes, J.M. The Economic Consequences. Macmillan, 1919.', grade: 'A (Excellent)', reason: 'Classic MLA format.' }
+      { citation: 'ipcc report climate change 2022', grade: 'D (Poor)', reason: 'No proper formatting.' }
     ];
-    return { pairs: pairs.sort(() => Math.random() - 0.5).slice(0, 4) };
+    return { pairs: pairs.sort(() => Math.random() - 0.5) };
   }
 
   function generateFillBlankMode() {
     const questions = [
-      { sentence: 'A focused research question uses "______" rather than "How does..."', correct: 'To what extent', options: ['To what extent', 'How does', 'What is', 'Explain'], error: errorDB.rq_broad },
-      { sentence: 'MLA book citation must include author, title, publisher, and ______.', correct: 'year of publication', options: ['year of publication', 'page count', 'ISBN', 'email'], error: errorDB.citation_format },
+      { sentence: 'A focused RQ uses "______" rather than "How does..."', correct: 'To what extent', options: ['To what extent', 'How does', 'What is', 'Explain'], error: errorDB.rq_broad },
+      { sentence: 'MLA citation must include author, title, publisher, and ______.', correct: 'year of publication', options: ['year of publication', 'page count', 'ISBN', 'email'], error: errorDB.citation_format },
       { sentence: 'Academic writing requires a ______ register.', correct: 'formal', options: ['formal', 'casual', 'friendly', 'simple'], error: errorDB.informal_lang },
-      { sentence: 'A strong conclusion should ______ findings.', correct: 'synthesize', options: ['synthesize', 'repeat', 'list', 'ignore'], error: errorDB.descriptive_conclusion },
-      { sentence: 'Direct quotations require ______ numbers.', correct: 'page', options: ['page', 'chapter', 'volume', 'line'], error: errorDB.missing_pages }
+      { sentence: 'A strong conclusion should ______ findings.', correct: 'synthesize', options: ['synthesize', 'repeat', 'list', 'ignore'], error: errorDB.descriptive_conclusion }
     ];
     return questions[Math.floor(Math.random() * questions.length)];
   }
 
   function generateTimelineMode() {
     const statements = [
-      { text: 'The research question must appear on the title page.', correct: true },
+      { text: 'The RQ must appear on the title page.', correct: true },
       { text: 'MLA uses "Works Cited" not "Bibliography".', correct: true },
       { text: 'Page numbers are required for direct quotations.', correct: true },
       { text: 'Contractions like "don\'t" are acceptable in formal writing.', correct: false },
       { text: 'A conclusion should introduce new arguments.', correct: false },
-      { text: 'Mixing MLA and APA in one essay is acceptable.', correct: false },
-      { text: 'The EE has a maximum word count of 4000 words.', correct: true }
+      { text: 'Mixing MLA and APA in one essay is acceptable.', correct: false }
     ];
     return { statements: statements.sort(() => Math.random() - 0.5).slice(0, 4) };
   }
 
   function generateSortingMode() {
-    // More varied sequences for repeatability
     const sequences = [
-      [{ text: 'Develop focused research question', order: 1, phase: 'Planning' },{ text: 'Compile preliminary bibliography', order: 2, phase: 'Research' },{ text: 'Write first complete draft', order: 3, phase: 'Drafting' },{ text: 'Apply consistent citation style', order: 4, phase: 'Revision' },{ text: 'Complete RPPF form', order: 5, phase: 'Final' }],
-      [{ text: 'Identify subject and topic', order: 1, phase: 'Initial' },{ text: 'Formulate research question', order: 2, phase: 'Planning' },{ text: 'Gather sources and data', order: 3, phase: 'Research' },{ text: 'Analyze evidence critically', order: 4, phase: 'Writing' },{ text: 'Proofread and format', order: 5, phase: 'Submission' }],
-      [{ text: 'Choose EE subject', order: 1, phase: 'Prep' },{ text: 'Meet with supervisor', order: 2, phase: 'Planning' },{ text: 'Conduct experiments/analysis', order: 3, phase: 'Investigation' },{ text: 'Draft reflections', order: 4, phase: 'Writing' },{ text: 'Final submission', order: 5, phase: 'Completion' }]
+      [{ text: 'Develop focused RQ', order: 1 },{ text: 'Compile bibliography', order: 2 },{ text: 'Write first draft', order: 3 },{ text: 'Apply citation style', order: 4 },{ text: 'Complete RPPF', order: 5 }],
+      [{ text: 'Identify topic', order: 1 },{ text: 'Formulate RQ', order: 2 },{ text: 'Gather sources', order: 3 },{ text: 'Analyze evidence', order: 4 },{ text: 'Proofread', order: 5 }]
     ];
     const seq = sequences[Math.floor(Math.random() * sequences.length)];
     return { items: seq.sort(() => Math.random() - 0.5) };
@@ -626,7 +725,7 @@
     if (state.speedTimer) { clearInterval(state.speedTimer); state.speedTimer = null; }
     
     if (state.questionsAnswered >= state.totalQuestions) {
-        showLeaderboard();
+        showGameOverScreen();
         return;
     }
 
@@ -644,10 +743,9 @@
   function renderCompareMode(area) {
     const data = generateCompareMode(); state.questionData = data;
     let html = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div>
-      <div class="question-card"><div class="question-header">ESSAY COMPARISON: Select the correctly formatted essay</div>
-      <p style="color:#a0a0a0; margin-bottom:16px;">Subject: ${data.essay.subject}</p>`;
+      <div class="question-card"><div class="question-header">ESSAY COMPARISON: Select the correct essay</div>`;
     data.options.forEach((opt, i) => {
-      html += `<div class="essay-box" id="essay-${i}" onclick="selectEssay(${i})"><div style="font-weight:700; color:#e94560; font-size:16px;">ESSAY ${String.fromCharCode(65+i)}</div>${opt.html}</div>`;
+      html += `<div class="essay-box" id="essay-${i}" onclick="selectEssay(${i})"><b>ESSAY ${String.fromCharCode(65+i)}</b><br>${opt.html}</div>`;
     });
     html += `<div class="btn-group"><button class="btn btn-primary" onclick="submitCompare()">SUBMIT</button><button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
     area.innerHTML = html;
@@ -665,13 +763,13 @@
   function renderMatchingMode(area) {
     const data = generateMatchingMode(); state.questionData = data;
     let html = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div>
-      <div class="question-card"><div class="question-header">CITATION MATCHING</div><div class="matching-grid"><div><b style="color:#e94560;">SOURCES</b><div id="sources-list">`;
+      <div class="question-card"><div class="question-header">CITATION MATCHING</div><div class="matching-grid"><div><b>SOURCES</b><div id="sources-list">`;
     data.pairs.forEach((p,i) => { html += `<div class="match-item" id="source-${i}" onclick="selectSource(${i})">${p.citation}</div>`; });
-    html += `</div></div><div><b style="color:#00cc66;">GRADE DESCRIPTORS</b><div id="grades-list">`;
+    html += `</div></div><div><b>GRADES</b><div id="grades-list">`;
     const shuffledGrades = data.pairs.map(p => ({grade:p.grade, reason:p.reason})).sort(()=>Math.random()-0.5);
     state.questionData.shuffledGrades = shuffledGrades;
     shuffledGrades.forEach((g,i) => { const gc = g.grade.includes('A')?'grade-a':g.grade.includes('B')?'grade-b':g.grade.includes('C')?'grade-c':'grade-d';
-      html += `<div class="match-item" id="grade-${i}" onclick="selectGrade(${i})"><span class="grade-badge ${gc}">${g.grade}</span><br>${g.reason}</div>`; });
+      html += `<div class="match-item" id="grade-${i}" onclick="selectGrade(${i})"><span class="grade-badge ${gc}">${g.grade}</span> ${g.reason}</div>`; });
     html += `</div></div></div><div class="btn-group"><button class="btn btn-primary" onclick="submitMatching()">SUBMIT</button><button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
     area.innerHTML = html;
   }
@@ -679,9 +777,9 @@
   function renderFillBlankMode(area) {
     const data = generateFillBlankMode(); state.questionData = data;
     let html = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div>
-      <div class="question-card"><div class="question-header">FILL IN THE BLANK</div><p style="color:#a0a0a0;">${data.error.name}</p>
-      <div class="essay-box" style="cursor:default;">${data.sentence.replace('______','<span style="border-bottom:3px solid #e94560; color:#e94560;">______</span>')}</div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px;">`;
+      <div class="question-card"><div class="question-header">FILL IN THE BLANK</div>
+      <div class="essay-box" style="cursor:default;">${data.sentence.replace('______','<span style="border-bottom:2px solid #e94560; color:#e94560;">______</span>')}</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px;">`;
     data.options.forEach((opt,i) => { html += `<div class="sentence-item" id="blank-option-${i}" onclick="selectBlankOption(${i})">${opt}</div>`; });
     html += `</div><div class="btn-group"><button class="btn btn-primary" onclick="submitFillBlank()">SUBMIT</button><button class="btn btn-secondary" onclick="skipQuestion()">SKIP</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
     area.innerHTML = html;
@@ -690,7 +788,7 @@
   function renderTimelineMode(area) {
     const data = generateTimelineMode(); state.questionData = data; state.speedTimeLeft = 30; state.timelineAnswers = {};
     let html = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div>
-      <div class="question-card"><div class="question-header">SPEED ROUND (30s)</div><div style="text-align:center; font-size:40px; color:#ff4444;" id="speed-timer">30</div>`;
+      <div class="question-card"><div class="question-header">SPEED ROUND (30s)</div><div style="text-align:center; font-size:32px; color:#ff4444;" id="speed-timer">30</div>`;
     data.statements.forEach((s,i) => { html += `<div class="essay-box" id="timeline-${i}"><p>${s.text}</p><div class="btn-group"><button class="btn btn-primary" onclick="answerTimeline(${i},true)">CORRECT</button><button class="btn btn-secondary" onclick="answerTimeline(${i},false)">INCORRECT</button></div></div>`; });
     html += `</div><div class="feedback-panel" id="feedback-panel"></div>`;
     area.innerHTML = html;
@@ -700,13 +798,13 @@
   function renderSortingMode(area) {
     const data = generateSortingMode(); state.questionData = data;
     let html = `<div class="progress-bar"><div class="progress-fill" style="width:${(state.questionsAnswered/state.totalQuestions)*100}%"></div></div>
-      <div class="question-card"><div class="question-header">RANK ORDER: Arrange steps correctly</div>`;
-    data.items.forEach((item,i) => { html += `<div class="essay-box" id="sort-item-${i}" onclick="selectSortItem(${i})"><span id="sort-number-${i}">#?</span> ${item.text} <small>(${item.phase})</small></div>`; });
+      <div class="question-card"><div class="question-header">RANK ORDER: Arrange steps</div>`;
+    data.items.forEach((item,i) => { html += `<div class="essay-box" id="sort-item-${i}" onclick="selectSortItem(${i})"><span id="sort-number-${i}">#?</span> ${item.text}</div>`; });
     html += `<div class="btn-group"><button class="btn btn-primary" onclick="submitSorting()">SUBMIT</button><button class="btn btn-secondary" onclick="resetSorting()">RESET</button></div></div><div class="feedback-panel" id="feedback-panel"></div>`;
     area.innerHTML = html;
   }
 
-  // ============ HANDLERS (SIMILAR TO V2) ============
+  // ============ HANDLERS ============
   function selectEssay(i) { if(state.answered) return; document.querySelectorAll('.essay-box').forEach(e=>e.classList.remove('selected')); document.getElementById('essay-'+i).classList.add('selected'); state.selectedAnswer=i; }
   function selectSentence(i) { if(state.answered) return; document.querySelectorAll('.sentence-item').forEach(e=>e.classList.remove('selected')); document.getElementById('sentence-'+i).classList.add('selected'); state.selectedAnswer=i; }
   function selectSource(i) { if(state.answered) return; document.querySelectorAll('#sources-list .match-item').forEach(e=>e.classList.remove('selected')); document.getElementById('source-'+i).classList.add('selected'); state.selectedSource=i; }
@@ -723,7 +821,7 @@
     if (state.speedTimer) clearInterval(state.speedTimer);
     state.questionsAnswered++;
     state.modeQuestionCount[state.currentMode]++;
-    if (state.questionsAnswered >= state.totalQuestions) { showLeaderboard(); return; }
+    if (state.questionsAnswered >= state.totalQuestions) { showGameOverScreen(); return; }
     renderCurrentMode();
   }
 
@@ -763,20 +861,20 @@
 
   function processResult(correct) {
     state.questionsAnswered++; state.modeQuestionCount[state.currentMode]++;
-    if(correct) { state.correctAnswers++; state.streak++; state.score+=10+state.streak*2; if(state.streak>=5) state.level=3; else if(state.streak>=3) state.level=2; }
+    if(correct) { state.correctAnswers++; state.streak++; state.score+=10+state.streak*2; }
     else { state.streak=0; state.score=Math.max(0,state.score-5); }
     updateStats();
-    if (state.questionsAnswered >= state.totalQuestions) { setTimeout(showLeaderboard, 1500); }
+    if (state.questionsAnswered >= state.totalQuestions) { setTimeout(showGameOverScreen, 1200); }
   }
 
   function showFeedback(correct, errors, customMsg) {
     const panel=document.getElementById('feedback-panel'); let h=`<h4 style="color:${correct?'#00cc66':'#ff4444'};">${correct?'CORRECT':'INCORRECT'}</h4>`;
     if(customMsg) h+=`<p>${customMsg}</p>`;
-    if(errors?.length) { errors.forEach(e=>h+=`<div class="error-item"><span class="grade-badge grade-d">${e.name}</span><p>${e.explanation}</p><p style="color:#00cc66;">Fix: ${e.fix}</p></div>`); }
-    h+=`<div class="btn-group"><button class="btn btn-primary" onclick="if(state.questionsAnswered>=state.totalQuestions)showLeaderboard(); else renderCurrentMode();">NEXT</button></div>`;
+    if(errors?.length) { errors.forEach(e=>h+=`<div class="error-item"><span class="grade-badge grade-d">${e.name}</span> ${e.explanation} <span style="color:#00cc66;">Fix: ${e.fix}</span></div>`); }
+    h+=`<div class="btn-group"><button class="btn btn-primary" onclick="if(state.questionsAnswered>=state.totalQuestions)showGameOverScreen(); else renderCurrentMode();">NEXT</button></div>`;
     panel.innerHTML=h; panel.classList.add('visible'); panel.scrollIntoView({behavior:'smooth'});
   }
-  function showMatchingFeedback(correctCount) { /* similar feedback with corrected pairs */ 
+  function showMatchingFeedback(correctCount) { 
     const panel=document.getElementById('feedback-panel'); panel.innerHTML=`<h4>${correctCount}/${state.questionData.pairs.length} Matches</h4><button class="btn btn-primary" onclick="renderCurrentMode()">NEXT</button>`; panel.classList.add('visible'); }
   function showSortingFeedback(correct) { document.getElementById('feedback-panel').innerHTML=`<h4>${correct?'Correct Order':'Incorrect'}</h4><button class="btn btn-primary" onclick="renderCurrentMode()">NEXT</button>`; document.getElementById('feedback-panel').classList.add('visible'); }
 
@@ -787,40 +885,126 @@
   function updateStats() {
     document.getElementById('score-display').textContent=state.score; document.getElementById('streak-display').textContent=state.streak;
     document.getElementById('question-display').textContent=state.questionsAnswered+'/'+state.totalQuestions;
-    document.getElementById('level-display').textContent=state.level;
     document.getElementById('accuracy-display').textContent=state.questionsAnswered?Math.round((state.correctAnswers/state.questionsAnswered)*100)+'%':'0%';
     document.getElementById('time-display').textContent=formatTime(state.globalTime);
   }
 
   function formatTime(s) { const m=Math.floor(s/60); const sec=s%60; return m+':'+(sec<10?'0':'')+sec; }
 
-  function showLeaderboard() {
-    document.getElementById('content-area').innerHTML = '';
-    const container = document.getElementById('leaderboard-container');
-    const entry = {
-        score: state.score,
-        accuracy: state.questionsAnswered ? Math.round((state.correctAnswers/state.questionsAnswered)*100) : 0,
-        level: state.level,
-        time: formatTime(state.globalTime)
-    };
-    state.leaderboard.push(entry);
-    state.leaderboard.sort((a,b) => b.score - a.score);
-    state.leaderboard = state.leaderboard.slice(0, 5);
+  // ============ GAME OVER & LEADERBOARD ============
+  function showGameOverScreen() {
+    if (state.gameEnded) return;
+    state.gameEnded = true;
+    if (state.speedTimer) clearInterval(state.speedTimer);
     
-    let html = `<div class="leaderboard"><h2>🏆 LEADERBOARD 🏆</h2><p style="margin-bottom:16px;">Session Complete! Questions: ${state.totalQuestions}</p>`;
-    state.leaderboard.forEach((e,i) => {
-        html += `<div class="leaderboard-entry"><span>#${i+1}</span><span>Score: ${e.score}</span><span>Acc: ${e.accuracy}%</span><span>Lv.${e.level}</span><span>${e.time}</span></div>`;
+    const area = document.getElementById('content-area');
+    const accuracy = state.questionsAnswered ? Math.round((state.correctAnswers/state.questionsAnswered)*100) : 0;
+    
+    let html = `
+      <div class="leaderboard">
+        <h2>🏆 SESSION COMPLETE 🏆</h2>
+        <p style="margin:8px 0;">Score: <b style="color:#e94560; font-size:20px;">${state.score}</b> | Accuracy: ${accuracy}%</p>
+        <div class="input-group">
+          <label style="color:#c0c0c0; font-weight:600;">INITIALS:</label>
+          <input type="text" id="initials-input" class="initials-input" maxlength="3" placeholder="ABC" autocomplete="off">
+          <button class="btn btn-primary" onclick="submitInitials()">SAVE</button>
+        </div>
+        <p id="initials-error" style="color:#ff4444; display:none; font-size:12px;">Please enter 1-3 letters.</p>
+      </div>
+      <div id="persistent-leaderboard"></div>
+    `;
+    area.innerHTML = html;
+    renderPersistentLeaderboard();
+  }
+
+  function submitInitials() {
+    const input = document.getElementById('initials-input');
+    const errorEl = document.getElementById('initials-error');
+    const initials = input.value.trim().toUpperCase();
+    
+    if (!/^[A-Z]{1,3}$/.test(initials)) {
+      errorEl.style.display = 'block';
+      input.focus();
+      return;
+    }
+    
+    errorEl.style.display = 'none';
+    state.playerInitials = initials;
+    
+    const entry = {
+      initials: initials,
+      score: state.score,
+      accuracy: state.questionsAnswered ? Math.round((state.correctAnswers/state.questionsAnswered)*100) : 0,
+      time: formatTime(state.globalTime),
+      date: new Date().toLocaleDateString()
+    };
+    
+    const persistent = loadPersistentLeaderboard();
+    persistent.push(entry);
+    savePersistentLeaderboard(persistent);
+    renderPersistentLeaderboard(initials);
+    
+    input.disabled = true;
+    document.querySelector('.input-group .btn-primary').disabled = true;
+    document.querySelector('.input-group .btn-primary').textContent = 'SAVED ✓';
+  }
+
+  function renderPersistentLeaderboard(highlightInitials = null) {
+    const container = document.getElementById('persistent-leaderboard');
+    if (!container) return;
+    
+    const persistent = loadPersistentLeaderboard();
+    
+    if (persistent.length === 0) {
+      container.innerHTML = '<div class="leaderboard"><p style="color:#a0a0a0;">No scores yet. Be the first!</p></div>';
+      return;
+    }
+    
+    let html = `
+      <div class="leaderboard">
+        <h2>📜 ALL-TIME LEADERS 📜</h2>
+        <p class="subtitle">Top ${persistent.length} Scores</p>
+    `;
+    
+    persistent.forEach((entry, index) => {
+      const isHighlight = highlightInitials && entry.initials === highlightInitials && entry.score === state.score;
+      html += `
+        <div class="leaderboard-entry ${isHighlight ? 'highlight' : ''}">
+          <span class="leaderboard-rank">#${index + 1}</span>
+          <span class="leaderboard-initials">${entry.initials}</span>
+          <span>Score: <span class="leaderboard-score">${entry.score}</span></span>
+          <span>Acc: ${entry.accuracy}%</span>
+          <span style="font-size:11px;">${entry.time}</span>
+          <span style="font-size:10px; color:#666;">${entry.date || ''}</span>
+        </div>
+      `;
     });
-    html += `<button class="btn btn-primary" style="margin-top:20px;" onclick="resetGame()">PLAY AGAIN</button></div>`;
+    
+    html += `
+        <button class="btn btn-primary" style="margin-top:12px;" onclick="resetGame()">PLAY AGAIN</button>
+        <button class="clear-scores-btn" onclick="clearAllScores()">🗑️ CLEAR ALL</button>
+      </div>
+    `;
+    
     container.innerHTML = html;
   }
 
+  function clearAllScores() {
+    if (confirm('Permanently delete all saved leaderboard scores?')) {
+      localStorage.removeItem(STORAGE_KEY);
+      renderPersistentLeaderboard();
+    }
+  }
+
   function resetGame() {
-    state.score = 0; state.questionsAnswered = 0; state.streak = 0; state.correctAnswers = 0; state.level = 1; state.globalTime = 0;
+    state.score = 0; state.questionsAnswered = 0; state.streak = 0; state.correctAnswers = 0; state.globalTime = 0;
     state.modeTimers = { compare:0, sentence:0, matching:0, fillblank:0, timeline:0, sorting:0 };
     state.modeQuestionCount = { compare:0, sentence:0, matching:0, fillblank:0, timeline:0, sorting:0 };
-    state.leaderboard = [];
+    state.gameEnded = false;
+    state.playerInitials = null;
     document.getElementById('leaderboard-container').innerHTML = '';
+    const area = document.getElementById('content-area');
+    if (area) area.innerHTML = '';
     clearInterval(state.modeIntervalId);
     startModeTimerInterval();
     renderCurrentMode();
@@ -829,21 +1013,54 @@
   function startModeTimerInterval() {
       if (state.modeIntervalId) clearInterval(state.modeIntervalId);
       state.modeIntervalId = setInterval(() => {
+          if (state.gameEnded) return;
           state.globalTime++;
           state.modeTimers[state.currentMode]++;
           document.getElementById('time-display').textContent = formatTime(state.globalTime);
-          document.getElementById('timer-'+state.currentMode).textContent = formatTime(state.modeTimers[state.currentMode]);
+          const timerEl = document.getElementById('timer-'+state.currentMode);
+          if (timerEl) timerEl.textContent = formatTime(state.modeTimers[state.currentMode]);
       }, 1000);
   }
 
   document.getElementById('mode-nav').addEventListener('click', function(e) {
     const btn = e.target.closest('.mode-btn');
-    if (!btn || state.questionsAnswered >= state.totalQuestions) return;
+    if (!btn || state.gameEnded) return;
     document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     state.currentMode = btn.dataset.mode;
     if (state.speedTimer) { clearInterval(state.speedTimer); state.speedTimer = null; }
+    if (state.questionsAnswered >= state.totalQuestions) { showGameOverScreen(); return; }
     renderCurrentMode();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (state.gameEnded) {
+        if (e.key === 'Enter') { const input = document.getElementById('initials-input'); if (input && document.activeElement === input) submitInitials(); }
+        return;
+    }
+    if (state.answered) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (state.questionsAnswered >= state.totalQuestions) showGameOverScreen(); else renderCurrentMode(); }
+        return;
+    }
+    const num = parseInt(e.key);
+    if (num >= 1 && num <= 4) {
+        e.preventDefault(); const index = num - 1;
+        switch(state.currentMode) {
+            case 'compare': selectEssay(index); break;
+            case 'sentence': selectSentence(index); break;
+            case 'fillblank': selectBlankOption(index); break;
+        }
+    }
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        switch(state.currentMode) {
+            case 'compare': submitCompare(); break;
+            case 'sentence': submitSentence(); break;
+            case 'matching': submitMatching(); break;
+            case 'fillblank': submitFillBlank(); break;
+            case 'sorting': submitSorting(); break;
+        }
+    }
   });
 
   startModeTimerInterval();
